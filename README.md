@@ -9,6 +9,7 @@ The following information is extracted per course:
 * description
 * contributor
 * created
-* relation (WIP)  
+* relation
+* language
   
 Please note that this script is currently a *work in progress*.
