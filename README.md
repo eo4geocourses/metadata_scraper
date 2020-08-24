@@ -11,4 +11,4 @@ The following information is extracted per course:
 * created
 * relation (WIP)  
   
-Please note that this script is currently a work in progress.
+Please note that this script is currently a *work in progress*.
