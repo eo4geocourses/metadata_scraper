@@ -12,3 +12,6 @@ sleep 2;
 git push origin master;
 sleep 5;
 echo "Run finished and pushed to Repo";
+echo "Run and push to repo successful" >> log_file.txt;
+date >>log_file.txt;
+echo "_______________________________" >> log_file.txt;
