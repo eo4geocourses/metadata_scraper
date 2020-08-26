@@ -9,8 +9,6 @@ Created on Thu Aug 20 11:45:03 2020
 import requests
 import pandas as pd
 import time
-start_time = time.time()
-
 
 url_list = [
 "https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/",
@@ -45,16 +43,12 @@ url_list = [
 "https://eo4geocourses.github.io/UJI_Introduction-to-Programming/",
 "https://eo4geocourses.github.io/UJI_Reproducable-Research-Practices-in-Geosciences/",
 "https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data/",
-"https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/",
 "https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/",
 ]
-
-
-
 """Takes URL, returns HTML as string"""
 def get_html(url):
     url_answer = requests.get(url)
-    print(url_answer,"  received from:  ",url[8:])
+    print(url_answer,"  received from GitHub Pages ->",url[32:])
     htmltext = url_answer.text
     return(htmltext)
 
@@ -69,55 +63,58 @@ def extract_metadata(htmltext):
     metadata = metadata.replace("\t","")
     
     return(metadata)
-
-
-"""Exxtracts string after dc:title, returns MAX 1 argument"""
+"""Extracts string after dc:title, returns MAX 1 argument"""
 def extract_title(metadata):
     metadata_short = metadata[metadata.find("dc:title ")+(len("dc:title ")+1):]
     title = metadata_short[:metadata_short.find('"')]
     return(title)
 
-"""Exxtracts string after dc:creator, returns MAX 1 argument"""
+"""Extracts string after dc:creator, returns MAX 1 argument"""
 def extract_creator(metadata):
     metadata_short = metadata[metadata.find("dc:creator ")+(len("dc:creator ")+1):]
     creator = metadata_short[:metadata_short.find('"')]
     return(creator)
 
-"""Exxtracts string after dc:abstract, returns MAX 1 argument"""
+"""Extracts string after dc:abstract, returns MAX 1 argument"""
 def extract_abstract(metadata):
     metadata_short = metadata[metadata.find("dc:abstract ")+(len("dc:abstract ")+1):]
     abstract = metadata_short[:metadata_short.find('"')]
     return(abstract)
 
-"""Exxtracts string after dc:description, returns MAX 1 argument"""
+"""Extracts string after dc:description, returns MAX 1 argument"""
 def extract_description(metadata):
     metadata_short = metadata[metadata.find("dc:description ")+(len("dc:description ")+1):]
     description = metadata_short[:metadata_short.find('"')]
     return(description)
 
-"""Exxtracts string after dc:contributor, returns MAX 1 argument"""
+"""Extracts string after dc:contributor, returns MAX 1 argument"""
 def extract_contributor(metadata):
     metadata_short = metadata[metadata.find("dc:contributor ")+(len("dc:contributor ")+1):]
     contributor = metadata_short[:metadata_short.find('"')]
     return(contributor)
 
-"""Exxtracts string after dc:created, returns MAX 1 argument"""
+"""Extracts string after dc:created, returns MAX 1 argument"""
 def extract_created(metadata):
     metadata_short = metadata[metadata.find("dc:created ")+(len("dc:created ")+1):]
     created = metadata_short[:metadata_short.find('"')]
     return(created)
 
-"""Exxtracts strings after dc:relations, returns LIST of relations"""
+"""Extracts string after dc:language, returns MAX 1 argument"""
+def extract_language(metadata):
+    metadata_short = metadata[metadata.find("dc:language ")+(len("dc:language ")+1):]
+    language = metadata_short[:metadata_short.find('"')]
+    return(language)
+
+"""Extracts strings after dc:relations, returns LIST of arguments (relations)"""
 def extract_relation(metadata):
     relation = []
     #Cycling through metadata while stil relation left, taking relation out of
     #string after appending to relation list
     while "dc:relation" in metadata:
-        "WIP"
         metadata_short = metadata[metadata.find("dc:relation")+(len("dc:relation ")):]
         temp = (metadata_short[:metadata_short.find(";")]).replace("eo4geo:","")
         
-        #Checking for finish of last relation , either " " ";" or "."
+        # Checking for finish of last relation , either " " ";" or "."
         # in order to slice string after last relation
         if " " in temp:
             temp = temp[:temp.find(" ")]
@@ -128,7 +125,6 @@ def extract_relation(metadata):
         metadata = metadata_short[metadata_short.find(";"):]
     
     return(relation)
-
 """Takes List, returns list of metadata.
 for each item in list:
 item[0] = URL
@@ -140,6 +136,7 @@ item[5] = description
 item[6] = contributors
 item[7] = created
 item[8] = relation
+item[9] = language
 """
 def scrape(url_list):
     ls = []
@@ -148,9 +145,9 @@ def scrape(url_list):
         item.append(str(url))
         htmltext = get_html(url)
         metadata = extract_metadata(htmltext)
-        
+        #print(metadata)
         if extract_title(metadata) == "What is Copernicus?":
-            print("UNCHANGED",url)
+            #print("UNCHANGED",url)
             changed_metadata = False
             item.append(str(changed_metadata)) #status
             item.append("")             #title
@@ -160,6 +157,7 @@ def scrape(url_list):
             item.append("")             #contributor
             item.append("")             #created
             item.append("")             #relation
+            item.append("")             #language
             """
             dict_meta = {}
             dict_meta["title"] = ""
@@ -173,7 +171,7 @@ def scrape(url_list):
             """
         else:
             changed_metadata = True
-            print("CHANGED",url)
+            #print("CHANGED",url)
             item.append(str(changed_metadata))               #status
             item.append(extract_title(metadata))        #title
             item.append(extract_creator(metadata))      #creator
@@ -182,6 +180,8 @@ def scrape(url_list):
             item.append(extract_contributor(metadata))  #contributors
             item.append(extract_created(metadata))      #created
             item.append(extract_relation(metadata))     #relation
+            item.append(extract_language(metadata))     #language
+            
             """
             dict_meta = {}
             dict_meta["title"] = extract_title(metadata)
@@ -195,17 +195,47 @@ def scrape(url_list):
             """
         ls.append(item)
     return(ls)
-
-
-
-
+print_status = False
+start_time = time.time()
 #turn resulting list from scrape into pd DataFrame
 df = pd.DataFrame(scrape(url_list))
 #Give df columns names
-df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s"]
+df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
 #export to csv
 df.to_csv("metadata_presentations.csv",index=False)
-#print results
-print("\n\n",df,"\n\n")
-print("Data sucessfully saved to .csv")
-print("Elapsed time in seconds: ", round(time.time()-start_time,2))
+if print_status == True:
+    print("Data sucessfully saved to 'metadata_presentations.csv'")
+    print("Elapsed time in seconds: ", round(time.time()-start_time,2))
+def write_html(meta_df):
+    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="http://www.eo4geo.eu/wp-content/uploads/2018/03/logo_site_retina_22.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
+<p style="text-align: left;">This table is updated automatically to show the progress of metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<!--HTML TABLE START IN LINDE BELOW-->'''
+    html = open("index.html","w")
+    html.write(header)
+    html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
+
+def format_html_table(df):
+    import numpy as np
+    df_2 = df.copy()
+    #yes_icon = '<a href="https://www.w3schools.com"><img border="0" alt="https://www.eo4geo.sbg.ac.at/PLUS/Practice-Image-Processing/checkmark.png" width="100" height="100"></a>'
+    #no_icon = '<a href="https://www.w3schools.com"><img border="0" alt="W3Schools" src="https://www.eo4geo.sbg.ac.at/PLUS/Practice-Image-Processing/icon-no.png" width="100" height="100"></a>'
+    #Replacing missing titles with logo
+    df["Title"] = df["Title"].replace("", "///")
+    df["Creator"] = np.where(df["Creator"]!="", "Yes", "///")
+    df["Abstract"] = np.where(df["Abstract"]!="", "Yes", "///")
+    df["Description"] = np.where(df["Description"]!="", "Yes", "///")
+    df["Contributors"] = np.where(df["Contributors"]!="", "Yes", "///")
+    df["Date created"] = np.where(df["Date created"]!="", "Yes", "///")
+    df["Relation/s"] = np.where(df["Relation/s"]!="", "Yes", "///")
+    df["Language"] = df["Language"].replace("", "///")
+    return df_2
+df_2 = format_html_table(df)
+
+write_html(format_html_table(df))
