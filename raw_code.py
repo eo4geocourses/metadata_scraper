@@ -41,7 +41,7 @@ url_list = [
 "https://eo4geocourses.github.io/UNIBAS_Remote-Sensing-Environment/",
 "https://eo4geocourses.github.io/UNIBAS_Methods-Techniques-EO/",
 "https://eo4geocourses.github.io/UJI_Introduction-to-Programming/",
-"https://eo4geocourses.github.io/UJI_Reproducable-Research-Practices-in-Geosciences/",
+"https://eo4geocourses.github.io/UJI_Reproducible-Research-Practices-in-Geosciences/",
 "https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data/",
 "https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/",
 ]
