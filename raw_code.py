@@ -44,6 +44,7 @@ url_list = [
 "https://eo4geocourses.github.io/UJI_Reproducible-Research-Practices-in-Geosciences/",
 "https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data/",
 "https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/",
+"https://eo4geocourses.github.io/PLUS_OBIA-Introduction/"
 ]
 """Takes URL, returns HTML as string"""
 def get_html(url):
