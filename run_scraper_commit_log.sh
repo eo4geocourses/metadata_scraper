@@ -9,7 +9,7 @@ echo "_______________________________" >> /home/simon/Git/metadata_scraper/log_f
 git status;
 sleep 2;
 git add *;
-slep 2;
+sleep 2;
 git commit -m "automatic shell commit";
 sleep 2;
 git push origin master;
