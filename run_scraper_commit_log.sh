@@ -11,7 +11,7 @@ git status >> /home/simon/Git/metadata_scraper/log_file.txt;
 sleep 2;
 git add * >> /home/simon/Git/metadata_scraper/log_file.txt;
 sleep 2;
-git commit -m "automatic shell commit";
+git commit -m "automatic shell commit" >> /home/simon/Git/metadata_scraper/log_file.txt;
 sleep 2;
 git push origin master >> /home/simon/Git/metadata_scraper/log_file.txt;
 sleep 2;
