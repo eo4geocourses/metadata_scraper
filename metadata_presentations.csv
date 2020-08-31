@@ -12,8 +12,8 @@ https://eo4geocourses.github.io/GEOF_EO-Data-sources/,False,,,,,,,,
 https://eo4geocourses.github.io/GEOF_Validation-of-EO-products/,False,,,,,,,,
 https://eo4geocourses.github.io/GEOF_Preprocessing-of-EO-data/,False,,,,,,,,
 https://eo4geocourses.github.io/GEOF_Legal-issues-in-EO-GI/,False,,,,,,,,
-https://eo4geocourses.github.io/UT-ITC_Satellite_Data_Classification_Random_Forests/,False,,,,,,,,
-https://eo4geocourses.github.io/UT-ITC_Satellite_Data_Classification_Decision_Trees/,False,,,,,,,,
+https://eo4geocourses.github.io/UT-ITC_Satellite_Data_Classification_Random_Forests/,True,What is Copernicus?,"Mariana Belgiu, University of Twente",Introduction to Random Forests,Learning objective: explain the advantanges of Random Forests over Decision Trees; describe the sensitivity of Random Forests to hyperparameters,Mariana Belgiu,2020-07-27,"['TA7-5-1', 'TA7-5-2', 'GS3']",EN
+https://eo4geocourses.github.io/UT-ITC_Satellite_Data_Classification_Decision_Trees/,True,What is Copernicus?,"Mariana Belgiu, Faculty of Geoinformation Science and Earth Observation (ITC), University of Twente", Decision Trees , Learning objective: the overall goal of this learning unit is to explain how decision trees works,Mariana Belgiu,2020-06-20,"['TA7-5-1', 'TA7-5-2', 'GS3']",EN
 https://eo4geocourses.github.io/UNEP-GRID_Introduction-to-GIS/,False,,,,,,,,
 https://eo4geocourses.github.io/KULeuven_Technical-Introduction-to-SDI/,False,,,,,,,,
 https://eo4geocourses.github.io/KULeuven_Management-View-on-SDI/,False,,,,,,,,

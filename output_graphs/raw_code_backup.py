@@ -147,7 +147,7 @@ def scrape(url_list):
         htmltext = get_html(url)
         metadata = extract_metadata(htmltext)
         #print(metadata)
-        if extract_title(metadata) == "What is Copernicus?" and extract_created(metadata) == "2020-06-20" and extract_creator(metadata) == "Stefan Lang, University of Salzburg" : 
+        if extract_title(metadata) == "What is Copernicus?":
             #print("UNCHANGED",url)
             changed_metadata = False
             item.append(str(changed_metadata)) #status
