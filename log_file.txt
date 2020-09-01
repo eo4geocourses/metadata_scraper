@@ -88,3 +88,24 @@ Changes not staged for commit:
 	modified:   run_scraper_commit_log.sh
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master e1120cd] automatic shell commit
+ Committer: root <root@h2891400.stratoserver.net>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+Run and push to repo successful
+Di 1. Sep 03:00:26 CEST 2020
+_______________________________
+Run and push to repo successful
+Di 1. Sep 10:20:46 CEST 2020
+_______________________________
