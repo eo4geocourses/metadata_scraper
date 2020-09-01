@@ -1,3 +1,4 @@
+cd /home/simon/Git/metadata_scraper/;
 echo "running scraper...";
 python3 /home/simon/Git/metadata_scraper/raw_code.py;
 sleep 5;
