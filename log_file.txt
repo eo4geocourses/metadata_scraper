@@ -112,3 +112,17 @@ Di 1. Sep 10:20:46 CEST 2020
 _______________________________
 =======
 >>>>>>> e1120cd058a5455e865623e953092db10bbf5e63
+Run and push to repo successful
+Di 1. Sep 11:15:48 CEST 2020
+_______________________________
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   index.html
+	modified:   log_file.txt
+	modified:   metadata_presentations.csv
+
+no changes added to commit (use "git add" and/or "git commit -a")
