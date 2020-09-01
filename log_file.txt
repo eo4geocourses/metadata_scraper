@@ -75,3 +75,16 @@ Untracked files:
 	output_graphs/
 
 no changes added to commit (use "git add" and/or "git commit -a")
+Run and push to repo successful
+Mo 31. Aug 14:17:29 CEST 2020
+_______________________________
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   log_file.txt
+	modified:   run_scraper_commit_log.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
