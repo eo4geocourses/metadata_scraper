@@ -69,7 +69,8 @@ Di 1. Sep 13:23:45 CEST 2020
 _______________________________
 Run and push to repo successful
 Mi 2. Sep 03:00:09 CEST 2020
-_______________________________Run and push to repo successful
+_______________________________
+Run and push to repo successful
 Mi 2. Sep 15:38:01 CEST 2020
 _______________________________
 [master dcd1cb5] automatic shell commit
