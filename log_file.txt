@@ -83,3 +83,5 @@ _______________________________
 scraping and writing to csv complete
 Mi 2. Sep 15:48:02 CEST 2020
 _______________________________
+[master 194294e] automatic shell commit
+ 4 files changed, 29 insertions(+), 24 deletions(-)
