@@ -1,4 +1,3 @@
-
 Run and push to repo successful
 Mi 26. Aug 12:11:04 CEST 2020
 _______________________________
@@ -44,131 +43,32 @@ _______________________________
 Run and push to repo successful
 Mo 31. Aug 10:26:40 CEST 2020
 _______________________________
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   log_file.txt
-	modified:   run_scraper_commit_log.sh
-
-no changes added to commit (use "git add" and/or "git commit -a")
 Run and push to repo successful
 Mo 31. Aug 14:09:22 CEST 2020
 _______________________________
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   index.html
-	modified:   log_file.txt
-	modified:   metadata_presentations.csv
-	modified:   metadata_scraping.ipynb
-	modified:   raw_code.py
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	output_graphs/
-
-no changes added to commit (use "git add" and/or "git commit -a")
 Run and push to repo successful
 Mo 31. Aug 14:17:29 CEST 2020
 _______________________________
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   log_file.txt
-	modified:   run_scraper_commit_log.sh
-
-no changes added to commit (use "git add" and/or "git commit -a")
-<<<<<<< HEAD
-[master e1120cd] automatic shell commit
- Committer: root <root@h2891400.stratoserver.net>
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly. Run the
-following command and follow the instructions in your editor to edit
-your configuration file:
-
-    git config --global --edit
-
-After doing this, you may fix the identity used for this commit with:
-
-    git commit --amend --reset-author
-
- 2 files changed, 14 insertions(+), 1 deletion(-)
 Run and push to repo successful
 Di 1. Sep 03:00:26 CEST 2020
 _______________________________
 Run and push to repo successful
 Di 1. Sep 10:20:46 CEST 2020
 _______________________________
-=======
->>>>>>> e1120cd058a5455e865623e953092db10bbf5e63
 Run and push to repo successful
 Di 1. Sep 11:15:48 CEST 2020
 _______________________________
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   index.html
-	modified:   log_file.txt
-	modified:   metadata_presentations.csv
-
-no changes added to commit (use "git add" and/or "git commit -a")
-[master 30b450b] automatic shell commit
- 3 files changed, 27 insertions(+), 13 deletions(-)
 Run and push to repo successful
 Di 1. Sep 13:21:14 CEST 2020
 _______________________________
 Run and push to repo successful
 Di 1. Sep 13:22:17 CEST 2020
 _______________________________
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   log_file.txt
-
-no changes added to commit (use "git add" and/or "git commit -a")
-[master 989323b] automatic shell commit
- 1 file changed, 17 insertions(+)
 Run and push to repo successful
 Di 1. Sep 13:23:45 CEST 2020
 _______________________________
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   log_file.txt
-	modified:   run_scraper_commit_log.sh
-
-no changes added to commit (use "git add" and/or "git commit -a")
-[master 8a33d65] automatic shell commit
- 2 files changed, 17 insertions(+), 1 deletion(-)
 Run and push to repo successful
 Mi 2. Sep 03:00:09 CEST 2020
+_______________________________Run and push to repo successful
+Mi 2. Sep 15:38:01 CEST 2020
 _______________________________
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   log_file.txt
-
-no changes added to commit (use "git add" and/or "git commit -a")
