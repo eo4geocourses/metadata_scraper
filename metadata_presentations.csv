@@ -29,7 +29,7 @@ https://eo4geocourses.github.io/ROSA_Change-Detection-in-optical-Data/,False,,,,
 https://eo4geocourses.github.io/UNIBAS_Remote-Sensing-Environment/,True,Foundamental of optical remote sensing,"Valerio Tramutoli, University of Basilicata",This is a module on Physical Principles which are the basis of any Remote Sensing application,Understand Physical Principles which are the basis of Remote Sensing;,"Nicola Capece, Valeria Satriano",2020-08-27,"['', '', '']",EN
 https://eo4geocourses.github.io/UNIBAS_Methods-Techniques-EO/,False,,,,,,,,
 https://eo4geocourses.github.io/UJI_Introduction-to-Programming/,False,,,,,,,,
-https://eo4geocourses.github.io/UJI_Reproducible-Research-Practices-in-Geosciences/,True,Reproducibility Research in the Geosciences,"Carlos Granell, Universitat Jaume I de Castelló, Spain",In this course students will get an introduction to the main ideas and tools to acquire reproducible research practices,Learning outcomes: Apply a series of practices (steps and tasks) for reproducible research in different phases of a project; Plan a reproducibility project independently; Recognize the importance of reproducible research as a fundamental pillar of modern science; Understand the problems associated with the lack of reproducibilitydc:contributor ,,2020-09-01,"['GC4', 'IP4-1-6']",EN
-https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data/,False,,,,,,,,
-https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/,False,,,,,,,,
-https://eo4geocourses.github.io/PLUS_OBIA-Introduction/,True,Object-based Image Analysis - An Introduction,"Stefan Lang, University of Salzburg",These slides provide an introduction to concepts and methods of Object-based image analysis. The slides have been prepared for and used in the virtual GEOBIA summer school in 2020. ,Learning outcomes: ;,"Eva Missoni, Barbara Hofer, Simon Donike",2020-08-27,"['IP3-7', 'IP3', 'IP3-5']",EN
+https://eo4geocourses.github.io/UJI_Reproducible-Research-Practices-in-Geosciences/,True,,,,,,,[],
+https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data/,True,,,,,,,[],
+https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/,True,,,,,,,[],
+https://eo4geocourses.github.io/PLUS_OBIA-Introduction/,True,,,,,,,[],
