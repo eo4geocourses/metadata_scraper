@@ -94,3 +94,11 @@ _______________________________
 scraping and writing to csv complete
 Fr 4. Sep 03:00:06 CEST 2020
 _______________________________
+[master 804a732] automatic shell commit
+ 7 files changed, 337 insertions(+), 2122 deletions(-)
+ create mode 100644 output_graphs/create_graphs.ipynb
+ delete mode 100644 output_graphs/metadata_scraping_backup.ipynb
+ delete mode 100644 output_graphs/raw_code_backup.py
+scraping and writing to csv complete
+Sa 5. Sep 03:00:06 CEST 2020
+_______________________________
