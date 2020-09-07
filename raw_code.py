@@ -208,7 +208,7 @@ if print_status == True:
     print("Data sucessfully saved to 'metadata_presentations.csv'")
     print("Elapsed time in seconds: ", round(time.time()-start_time,2))
 def write_html(meta_df):
-    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://www.eo4geo.eu/wp-content/uploads/2018/03/logo_site_retina_22.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
+    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <h4 style="text-align: left;">&nbsp;</h4>
