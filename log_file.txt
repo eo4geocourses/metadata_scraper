@@ -117,3 +117,8 @@ _______________________________
 scraping and writing to csv complete
 Mo 7. Sep 10:34:02 CEST 2020
 _______________________________
+[master fc54d3c] automatic shell commit
+ 3 files changed, 152 insertions(+), 147 deletions(-)
+scraping and writing to csv complete
+Mo 7. Sep 10:58:14 CEST 2020
+_______________________________
