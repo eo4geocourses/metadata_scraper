@@ -208,7 +208,7 @@ if print_status == True:
     print("Data sucessfully saved to 'metadata_presentations.csv'")
     print("Elapsed time in seconds: ", round(time.time()-start_time,2))
 def write_html(meta_df):
-    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="http://www.eo4geo.eu/wp-content/uploads/2018/03/logo_site_retina_22.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
+    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://www.eo4geo.eu/wp-content/uploads/2018/03/logo_site_retina_22.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <h4 style="text-align: left;">&nbsp;</h4>
@@ -225,9 +225,6 @@ def write_html(meta_df):
 def format_html_table(df):
     import numpy as np
     df_2 = df.copy()
-    #yes_icon = '<a href="https://www.w3schools.com"><img border="0" alt="https://www.eo4geo.sbg.ac.at/PLUS/Practice-Image-Processing/checkmark.png" width="100" height="100"></a>'
-    #no_icon = '<a href="https://www.w3schools.com"><img border="0" alt="W3Schools" src="https://www.eo4geo.sbg.ac.at/PLUS/Practice-Image-Processing/icon-no.png" width="100" height="100"></a>'
-    #Replacing missing titles with logo
     df["Title"] = df["Title"].replace("", "///")
     df["Creator"] = np.where(df["Creator"]!="", "Yes", "///")
     df["Abstract"] = np.where(df["Abstract"]!="", "Yes", "///")
