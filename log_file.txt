@@ -132,3 +132,8 @@ _______________________________
 scraping and writing to csv complete
 Mo 7. Sep 16:05:48 CEST 2020
 _______________________________
+[master e78f075] automatic shell commit
+ 3 files changed, 15 insertions(+), 10 deletions(-)
+scraping and writing to csv complete
+Di 8. Sep 03:00:10 CEST 2020
+_______________________________
