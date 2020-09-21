@@ -69,7 +69,7 @@ for names,dicts in zip(df_clean["names"],ls_dicts):
     dicts["ID"]=names
     
 #getting rid of useless variables
-del names, dicts, entry, i, meta_relations_tags, url_names_ls, df, rel_ls
+#del names, dicts, entry, i, meta_relations_tags, url_names_ls, df, rel_ls
 
 
 df_clean["rel_dicts"] = ls_dicts

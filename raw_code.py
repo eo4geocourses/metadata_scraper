@@ -9,6 +9,9 @@ Created on Thu Aug 20 11:45:03 2020
 import requests
 import pandas as pd
 import time
+from bs4 import BeautifulSoup
+
+ci = ["https://eo4geocourses.github.io/Course-Inventory/"]
 
 url_list = [
 "https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/",
@@ -52,6 +55,88 @@ def get_html(url):
     print(url_answer,"  received from GitHub Pages ->",url[32:])
     htmltext = url_answer.text
     return(htmltext)
+
+
+def scrape_BS(url,htmltext):
+    soup = BeautifulSoup(htmltext,features="lxml")
+    ret_ls = []
+    ret_ls.append(url)
+    
+    for tag in soup.find_all("meta"):
+        
+        if tag.get("property", None) == "dc:title":
+            ret_ls.append(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:creator":
+            ret_ls.append(tag.get("content", None))
+    
+#        elif tag.get("property", None) == "dc:subject":
+#            print(tag.get("content", None))
+    
+        elif tag.get("property", None) == "dc:abstract":
+            ret_ls.append(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:tableOfContents":
+#            print(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:description":
+            ret_ls.append(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:contributor":
+            ret_ls.append(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:created":
+            ret_ls.append(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:type":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:format":
+#            print(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:language":
+            ret_ls.append(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:SizeOrDuration":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:audience":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:audience":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:educationLevel":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:source":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:rightsHolder":
+#            print(tag.get("content", None))
+    
+#        elif tag.get("property", None) == "dc:license":
+#            print(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:relation":
+            ret_ls.append(tag.get("content", None))
+    
+    return(ret_ls)
+
+for url in ci:
+    print(scrape_BS(url,get_html(url)))
+
+
+print("\n\nSYSBREAK\n\n")
+import sys
+sys.exit("Scripted Break")
+
+
+
+"""
+____________________________________________________________________________
+"""
+
 
 
 """Extracts MetaData part ftom full HTML text, removes formatiing characters"""
@@ -237,3 +322,4 @@ def format_html_table(df):
 df_2 = format_html_table(df)
 
 write_html(format_html_table(df))
+
