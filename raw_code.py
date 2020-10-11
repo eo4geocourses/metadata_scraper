@@ -11,7 +11,7 @@ import pandas as pd
 import time
 from bs4 import BeautifulSoup
 
-ci = ["https://eo4geocourses.github.io/Course-Inventory/"]
+
 
 url_list = [
 "https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/",
@@ -49,6 +49,14 @@ url_list = [
 "https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/",
 "https://eo4geocourses.github.io/PLUS_OBIA-Introduction/"
 ]
+
+
+#TEMP LIST TO SCRAPE ONLY PLUS REPO
+url_list = ["https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/"]
+
+
+
+
 """Takes URL, returns HTML as string"""
 def get_html(url):
     url_answer = requests.get(url)
@@ -121,9 +129,22 @@ def scrape_BS(url,htmltext):
         elif tag.get("property", None) == "dc:relation":
             ret_ls.append(tag.get("content", None))
     
+    
+    """ORDER OF RETURN LIST:
+        1. Title
+        2. Creator
+        3. Abstract
+        4. Description
+        5. Contributor
+        6. Created
+        7. Language
+        8. Relation(s)
+    """
+    
+    
     return(ret_ls)
 
-for url in ci:
+for url in url_list:
     print(scrape_BS(url,get_html(url)))
 
 
