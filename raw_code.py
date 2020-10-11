@@ -186,10 +186,24 @@ def scrape_BS(url,htmltext):
     ret_ls.append(creator)
     ret_ls.append(abstract)
     ret_ls.append(description)
-    ret_ls.append(contributor)
+    
+    #making sure not to append empty list
+    if len(contributor) == 0:
+        ret_ls.append("")
+    else:
+        ret_ls.append(contributor)
     ret_ls.append(created)
-    ret_ls.append(relation)
+    
+    # Making sure not to append empty relations list
+    if len(relation) == 0:
+        ret_ls.append("")
+    else:
+        ret_ls.append(relation)
+    
     ret_ls.append(language)
+    
+    
+    
     return(ret_ls)
     
     
@@ -380,7 +394,7 @@ DF creation for new RDFa method
 df = pd.DataFrame.from_records(list_of_metadata)
 df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
 df.to_csv("metadata_presentations.csv",index=False)
-print(df)
+#print(df)
 
 
 
@@ -406,9 +420,7 @@ def format_html_table(df):
     df_2["Creator"] = np.where(df_2["Creator"]!="", "Yes", "///")
     df_2["Abstract"] = np.where(df_2["Abstract"]!="", "Yes", "///")
     df_2["Description"] = np.where(df_2["Description"]!="", "Yes", "///")
-    
-    df_2["Contributors"] = np.where(len(df_2["Contributors"]) > 0 , "Yes", "///")
-    
+    df_2["Contributors"] = np.where(df_2["Contributors"] != "" , "Yes", "///")
     df_2["Date created"] = np.where(df_2["Date created"]!="", "Yes", "///")
     df_2["Relation/s"] = np.where(df_2["Relation/s"]!="", "Yes", "///")
     df_2["Language"] = df_2["Language"].replace("", "///")
@@ -422,13 +434,15 @@ def format_html_table(df):
 #Cleaning up table for hmtl writing
 df_html = format_html_table(df)
 #writing cleaned up table to html
-write_html(format_html_table(df))
+write_html(df_html)
 
 
 
 
 
-print_status = True
+print_status = False
 if print_status == True:
+    print(df.head(5),"\n\n")
     print("Data sucessfully saved to 'metadata_presentations.csv'")
     print("Elapsed time in seconds: ", round(time.time()-start_time,2))
+del start_time, print_status
