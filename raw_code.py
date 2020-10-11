@@ -10,6 +10,7 @@ import requests
 import pandas as pd
 import time
 from bs4 import BeautifulSoup
+start_time = time.time()
 
 
 
@@ -52,7 +53,7 @@ url_list = [
 
 
 #TEMP LIST TO SCRAPE ONLY PLUS REPO
-url_list = ["https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/"]
+#url_list = ["https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/"]
 
 
 
@@ -65,36 +66,83 @@ def get_html(url):
     return(htmltext)
 
 
+
+
+
+"""ORDER OF RETURN LIST:
+        1. URL
+        2. Changed Boolean
+        3. Title
+        4. Creator
+        5. Abstract
+        6. Description
+        7. Contributor(s)
+        8. Created
+        9. Relation(s)
+        10. Language
+"""
 def scrape_BS(url,htmltext):
+    
+    
+    
     soup = BeautifulSoup(htmltext,features="lxml")
-    ret_ls = []
-    ret_ls.append(url)
+    ret_ls = []             #Resetting return list
+    # Setting empty variables to fill by meta tags
+    title = ""
+    changed = ""
+    creator = ""
+    abstract = ""
+    description = ""
+    contributor = []
+    created = ""
+    relation = []
+    language = ""
+   
     
     for tag in soup.find_all("meta"):
         
+        
+        """Check for validity of Metadata/changed state by comparing and adding True/False attribute"""
         if tag.get("property", None) == "dc:title":
-            ret_ls.append(tag.get("content", None))
+            if tag.get("content", None) == "What is Copernicus?":
+                changed = (False)
+            if tag.get("content", None) != "What is Copernicus?":
+                changed = (True)
+                
+        
+        if tag.get("property", None) == "dc:title":
+            #ret_ls.append(tag.get("content", None))
+            title = (tag.get("content", None))
             
         elif tag.get("property", None) == "dc:creator":
-            ret_ls.append(tag.get("content", None))
+            #ret_ls.append(tag.get("content", None))
+            creator = tag.get("content", None)
     
 #        elif tag.get("property", None) == "dc:subject":
 #            print(tag.get("content", None))
     
         elif tag.get("property", None) == "dc:abstract":
-            ret_ls.append(tag.get("content", None))
+            #ret_ls.append(tag.get("content", None))
+            abstract = tag.get("content", None)
             
 #        elif tag.get("property", None) == "dc:tableOfContents":
 #            print(tag.get("content", None))
             
         elif tag.get("property", None) == "dc:description":
-            ret_ls.append(tag.get("content", None))
+            #ret_ls.append(tag.get("content", None))
+            description = tag.get("content", None)
             
         elif tag.get("property", None) == "dc:contributor":
-            ret_ls.append(tag.get("content", None))
+            #tag.get("content", None)
+            #print("pass")
+            #ret_ls.append(tag.get("content", None))
+            #ret_ls_contributors.append(tag.get("content", None))
+            contributor.append(tag.get("content", None))
+
             
         elif tag.get("property", None) == "dc:created":
-            ret_ls.append(tag.get("content", None))
+            #ret_ls.append(tag.get("content", None))
+            created = tag.get("content", None)
             
 #        elif tag.get("property", None) == "dc:type":
 #            print(tag.get("content", None))
@@ -103,7 +151,8 @@ def scrape_BS(url,htmltext):
 #            print(tag.get("content", None))
             
         elif tag.get("property", None) == "dc:language":
-            ret_ls.append(tag.get("content", None))
+            #ret_ls.append(tag.get("content", None))
+           language = tag.get("content", None)
             
 #        elif tag.get("property", None) == "dc:SizeOrDuration":
 #            print(tag.get("content", None))
@@ -125,33 +174,38 @@ def scrape_BS(url,htmltext):
     
 #        elif tag.get("property", None) == "dc:license":
 #            print(tag.get("content", None))
-            
+        
+        #Extra list for individual relation tags
         elif tag.get("property", None) == "dc:relation":
-            ret_ls.append(tag.get("content", None))
+            relation.append(tag.get("content", None))
     
-    
-    """ORDER OF RETURN LIST:
-        1. Title
-        2. Creator
-        3. Abstract
-        4. Description
-        5. Contributor
-        6. Created
-        7. Language
-        8. Relation(s)
-    """
-    
-    
+    #append extracting MD values in corect order
+    ret_ls.append(url)
+    ret_ls.append(changed)
+    ret_ls.append(title)
+    ret_ls.append(creator)
+    ret_ls.append(abstract)
+    ret_ls.append(description)
+    ret_ls.append(contributor)
+    ret_ls.append(created)
+    ret_ls.append(relation)
+    ret_ls.append(language)
     return(ret_ls)
+    
+    
+    
 
+
+list_of_metadata = []
 for url in url_list:
-    print(scrape_BS(url,get_html(url)))
+    list_of_metadata.append(scrape_BS(url,get_html(url)))
 
 
+"""
 print("\n\nSYSBREAK\n\n")
 import sys
 sys.exit("Scripted Break")
-
+"""
 
 
 """
@@ -302,17 +356,35 @@ def scrape(url_list):
             """
         ls.append(item)
     return(ls)
-print_status = False
-start_time = time.time()
+
+
+
+"""
+DF creation for comment MD scraping
+"""
+
+"""
 #turn resulting list from scrape into pd DataFrame
 df = pd.DataFrame(scrape(url_list))
+df = pd.DataFrame()
 #Give df columns names
 df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
 #export to csv
 df.to_csv("metadata_presentations.csv",index=False)
-if print_status == True:
-    print("Data sucessfully saved to 'metadata_presentations.csv'")
-    print("Elapsed time in seconds: ", round(time.time()-start_time,2))
+"""
+
+
+"""
+DF creation for new RDFa method
+"""
+df = pd.DataFrame.from_records(list_of_metadata)
+df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
+df.to_csv("metadata_presentations.csv",index=False)
+print(df)
+
+
+
+
 def write_html(meta_df):
     header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
 <p>&nbsp;</p>
@@ -327,20 +399,36 @@ def write_html(meta_df):
     html = open("index.html","w")
     html.write(header)
     html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
-
 def format_html_table(df):
     import numpy as np
     df_2 = df.copy()
-    df["Title"] = df["Title"].replace("", "///")
-    df["Creator"] = np.where(df["Creator"]!="", "Yes", "///")
-    df["Abstract"] = np.where(df["Abstract"]!="", "Yes", "///")
-    df["Description"] = np.where(df["Description"]!="", "Yes", "///")
-    df["Contributors"] = np.where(df["Contributors"]!="", "Yes", "///")
-    df["Date created"] = np.where(df["Date created"]!="", "Yes", "///")
-    df["Relation/s"] = np.where(df["Relation/s"]!="", "Yes", "///")
-    df["Language"] = df["Language"].replace("", "///")
+    df_2["Title"] = df_2["Title"].replace("", "///")
+    df_2["Creator"] = np.where(df_2["Creator"]!="", "Yes", "///")
+    df_2["Abstract"] = np.where(df_2["Abstract"]!="", "Yes", "///")
+    df_2["Description"] = np.where(df_2["Description"]!="", "Yes", "///")
+    
+    df_2["Contributors"] = np.where(len(df_2["Contributors"]) > 0 , "Yes", "///")
+    
+    df_2["Date created"] = np.where(df_2["Date created"]!="", "Yes", "///")
+    df_2["Relation/s"] = np.where(df_2["Relation/s"]!="", "Yes", "///")
+    df_2["Language"] = df_2["Language"].replace("", "///")
     return df_2
-df_2 = format_html_table(df)
 
+
+
+
+
+
+#Cleaning up table for hmtl writing
+df_html = format_html_table(df)
+#writing cleaned up table to html
 write_html(format_html_table(df))
 
+
+
+
+
+print_status = True
+if print_status == True:
+    print("Data sucessfully saved to 'metadata_presentations.csv'")
+    print("Elapsed time in seconds: ", round(time.time()-start_time,2))
