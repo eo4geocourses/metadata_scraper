@@ -407,7 +407,7 @@ def write_html(meta_df):
 <h4 style="text-align: left;">&nbsp;</h4>
 <h4 style="text-align: left;">&nbsp;</h4>
 <h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
-<p style="text-align: left;">This table is updated automatically to show the progress of metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
+<p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
 <p style="text-align: left;">&nbsp;</p>
 <!--HTML TABLE START IN LINDE BELOW-->'''
     html = open("index.html","w")

@@ -75,18 +75,70 @@ for names,dicts in zip(df_clean["names"],ls_dicts):
 df_clean["rel_dicts"] = ls_dicts
 
 
+
+
+"""USE df_clean HERE FOR NEW FORMAT OF OUTPUT JSON"""
+#print(df_clean)
+
+
+#Define empty list to hold new lists
+barbaras_list = []
+
+
+# Empty list that will be appended
+final_list = []
+
+#Go through both names and rel lists
+for a,b in zip(df_clean["names"],df_clean["rel_ls"]):
+    # Eliminating empty lists
+    if b[0] != "":
+        # calling count unique method, passing rel_list, returns dict with counts
+        unique_dict = (count_unique(b))
+        # iterating over dict by key(concept) and value(count)
+        for key in unique_dict:
+            # a = names
+            # key = code (concept), unique
+            # unique_dict[key] = count of code (key)
+            
+            #appending empty list with one entry per concept and course w/ appended count
+            final_list.append({"ID":a,"code":key,"count":unique_dict[key]})
+        
+
+
+
+
+"""
+        #For every list entry per course name
+        #print(b)
+        for x in b:
+            #append to list of rel lists
+            # x = unique concept entries
+            # a = name of course
+            # b = list of relations w/ multiple entries
+            
+            d = {}
+            d = {"ID":a, "code":x}
+            
+            barbaras_list.append(d)
+            
+"""
+
+
+
+
+
 #dump to JSON string
 import json
-json_str = json.dumps(ls_dicts)
+json_str = json.dumps(final_list)
 
 #write list to JSON file in same dict
 with open('meatadata_presentations.json', 'w') as json_file:
-    json.dump(ls_dicts, json_file)
+    json.dump(final_list, json_file)
 
 
 
 
-"""CHARTS STANDARD"""
+"""PIE CHARTS STANDARD"""
 
 
 """
