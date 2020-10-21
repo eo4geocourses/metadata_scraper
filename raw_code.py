@@ -394,6 +394,7 @@ DF creation for new RDFa method
 df = pd.DataFrame.from_records(list_of_metadata)
 df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
 df.to_csv("metadata_presentations.csv",index=False)
+df.to_csv("graphs/metadata_presentations.csv",index=False) #put copy in graph subfolder
 #print(df)
 
 
