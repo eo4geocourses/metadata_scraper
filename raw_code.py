@@ -57,7 +57,6 @@ url_list = [
 
 
 
-
 """Takes URL, returns HTML as string"""
 def get_html(url):
     url_answer = requests.get(url)
@@ -214,12 +213,34 @@ list_of_metadata = []
 for url in url_list:
     list_of_metadata.append(scrape_BS(url,get_html(url)))
 
+def format_html_table(df):
+    import numpy as np
+    df_2 = df.copy()
+    df_2["Title"] = df_2["Title"].replace("", "///")
+    df_2["Creator"] = np.where(df_2["Creator"]!="", "Yes", "///")
+    df_2["Abstract"] = np.where(df_2["Abstract"]!="", "Yes", "///")
+    df_2["Description"] = np.where(df_2["Description"]!="", "Yes", "///")
+    df_2["Contributors"] = np.where(df_2["Contributors"] != "" , "Yes", "///")
+    df_2["Date created"] = np.where(df_2["Date created"]!="", "Yes", "///")
+    df_2["Relation/s"] = np.where(df_2["Relation/s"]!="", "Yes", "///")
+    df_2["Language"] = df_2["Language"].replace("", "///")
+    return df_2
 
-"""
-print("\n\nSYSBREAK\n\n")
-import sys
-sys.exit("Scripted Break")
-"""
+
+def write_html(meta_df):
+    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
+<p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<!--HTML TABLE START IN LINDE BELOW-->'''
+    html = open("index.html","w")
+    html.write(header)
+    html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
 
 
 """
@@ -388,46 +409,36 @@ df.to_csv("metadata_presentations.csv",index=False)
 """
 
 
+
+
+
 """
 DF creation for new RDFa method
 """
+# Creating DF from List
 df = pd.DataFrame.from_records(list_of_metadata)
+# Giving column names
 df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
+
+
+# Adding Banner links to DF
+# empty list to hold links in correct order
+banner_list = []
+#Cycling through URL list of DF
+for url in df["URL"]:
+    # Adding URL prefix of server
+    # Extracting Name of course from link
+    # ending with png for file ending
+    banner_list.append("https://eo4geo.sbg.ac.at/banner/"+url[32:-1]+".png")
+    
+    
+#Appending Link to Banner image
+df["banner_link"] = banner_list
+# Export to final output csv
 df.to_csv("metadata_presentations.csv",index=False)
-df.to_csv("graphs/metadata_presentations.csv",index=False) #put copy in graph subfolder
+ #put copy in graph subfolder
+df.to_csv("graphs/metadata_presentations.csv",index=False)
 #print(df)
-
-
-
-
-def write_html(meta_df):
-    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
-<p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
-<p style="text-align: left;">&nbsp;</p>
-<!--HTML TABLE START IN LINDE BELOW-->'''
-    html = open("index.html","w")
-    html.write(header)
-    html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
-def format_html_table(df):
-    import numpy as np
-    df_2 = df.copy()
-    df_2["Title"] = df_2["Title"].replace("", "///")
-    df_2["Creator"] = np.where(df_2["Creator"]!="", "Yes", "///")
-    df_2["Abstract"] = np.where(df_2["Abstract"]!="", "Yes", "///")
-    df_2["Description"] = np.where(df_2["Description"]!="", "Yes", "///")
-    df_2["Contributors"] = np.where(df_2["Contributors"] != "" , "Yes", "///")
-    df_2["Date created"] = np.where(df_2["Date created"]!="", "Yes", "///")
-    df_2["Relation/s"] = np.where(df_2["Relation/s"]!="", "Yes", "///")
-    df_2["Language"] = df_2["Language"].replace("", "///")
-    return df_2
-
-
 
 
 
