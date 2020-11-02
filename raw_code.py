@@ -214,7 +214,9 @@ def scrape_BS(url,htmltext):
     #making sure not to append empty list
     if len(contributor) == 0:
         ret_ls.append("")
-    else:
+    if len(contributor) != 0 and len(contributor[0]) == 0:
+           ret_ls.append("")
+    if len(contributor) != 0 and contributor[0] != "" and len(contributor[0])!=0:
         ret_ls.append(contributor)
         
     ret_ls.append(created)
