@@ -9,6 +9,10 @@ Created on Thu Aug 20 11:45:03 2020
 import requests
 import pandas as pd
 import time
+from bs4 import BeautifulSoup
+start_time = time.time()
+
+
 
 url_list = [
 "https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/",
@@ -46,12 +50,239 @@ url_list = [
 "https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/",
 "https://eo4geocourses.github.io/PLUS_OBIA-Introduction/"
 ]
+
+
+#TEMP LIST TO SCRAPE ONLY PLUS REPO
+#url_list = ["https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/"]
+
+
+
 """Takes URL, returns HTML as string"""
 def get_html(url):
     url_answer = requests.get(url)
     print(url_answer,"  received from GitHub Pages ->",url[32:])
     htmltext = url_answer.text
     return(htmltext)
+
+
+
+
+
+"""ORDER OF RETURN LIST:
+        1. URL
+        2. Changed Boolean
+        3. Title
+        4. Creator
+        5. Abstract
+        6. Description
+        7. Contributor(s)
+        8. Created
+        9. Relation(s)
+        10. Language
+"""
+def scrape_BS(url,htmltext):
+    
+    
+    
+    soup = BeautifulSoup(htmltext,features="lxml")
+    ret_ls = []             #Resetting return list
+    # Setting empty variables to fill by meta tags
+    title = ""
+    changed = ""
+    creator = ""
+    abstract = ""
+    description = ""
+    contributor = []
+    created = ""
+    relation = []
+    language = ""
+    education_level = ""
+    content_type = ""
+    publisher = ""
+   
+    
+    for tag in soup.find_all("meta"):
+        
+        
+        """Check for validity of Metadata/changed state by comparing and adding True/False attribute"""
+        if tag.get("property", None) == "dc:title":
+            if tag.get("content", None) == "What is Copernicus?":
+                changed = (False)
+            if tag.get("content", None) != "What is Copernicus?":
+                changed = (True)
+                
+        
+        if tag.get("property", None) == "dc:title":
+            #ret_ls.append(tag.get("content", None))
+            title = (tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:creator":
+            #ret_ls.append(tag.get("content", None))
+            creator = tag.get("content", None)
+
+        elif tag.get("property", None) == "dc:publisher":
+            #ret_ls.append(tag.get("content", None))
+            publisher = tag.get("content", None)
+            
+            
+#        elif tag.get("property", None) == "dc:subject":
+#            print(tag.get("content", None))
+    
+        elif tag.get("property", None) == "dc:abstract":
+            #ret_ls.append(tag.get("content", None))
+            abstract = tag.get("content", None)
+            
+#        elif tag.get("property", None) == "dc:tableOfContents":
+#            print(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:description":
+            #ret_ls.append(tag.get("content", None))
+            description = tag.get("content", None)
+            
+        elif tag.get("property", None) == "dc:contributor":
+            #tag.get("content", None)
+            #print("pass")
+            #ret_ls.append(tag.get("content", None))
+            #ret_ls_contributors.append(tag.get("content", None))
+            contributor.append(tag.get("content", None))
+
+            
+        elif tag.get("property", None) == "dc:created":
+            #ret_ls.append(tag.get("content", None))
+            created = tag.get("content", None)
+            
+        elif tag.get("property", None) == "dc:type":
+            #print(tag.get("content", None))
+            content_type = tag.get("content", None)
+            
+#        elif tag.get("property", None) == "dc:format":
+#            print(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:language":
+            #ret_ls.append(tag.get("content", None))
+           language = tag.get("content", None)
+            
+#        elif tag.get("property", None) == "dc:SizeOrDuration":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:audience":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:audience":
+#            print(tag.get("content", None))
+            
+        elif tag.get("property", None) == "dc:educationLevel":
+            #print(tag.get("content", None))
+            education_level = tag.get("content", None)
+            
+#        elif tag.get("property", None) == "dc:source":
+#            print(tag.get("content", None))
+            
+#        elif tag.get("property", None) == "dc:rightsHolder":
+#            print(tag.get("content", None))
+    
+#        elif tag.get("property", None) == "dc:license":
+#            print(tag.get("content", None))
+        
+        #Extra list for individual relation tags
+#        elif tag.get("property", None) == "dc:relation":
+#            relation.append(tag.get("content", None))
+
+#        elif tag.get("link", None) == "dc:relation":
+#            relation.append(tag.get("content", None))
+#            print(relation)
+
+
+
+    for link in soup.find_all('link', href=True):
+        if "eo4geo:" in link['href']:
+            relation.append(link['href'])
+
+    
+    #append extracting MD values in corect order
+    ret_ls.append(url)
+    ret_ls.append(changed)
+    ret_ls.append(title)
+    ret_ls.append(creator)
+    ret_ls.append(publisher)
+    ret_ls.append(abstract)
+    ret_ls.append(description)
+    ret_ls.append(language)
+    ret_ls.append(content_type)
+    ret_ls.append(education_level)
+    
+    #making sure not to append empty list
+    if len(contributor) == 0:
+        ret_ls.append("")
+    else:
+        ret_ls.append(contributor)
+        
+    ret_ls.append(created)
+    
+    # Making sure not to append empty relations list
+    # Making sure not to add list with only eo4geo: inside
+    if len(relation) == 0:
+        ret_ls.append("")
+    if len(relation) != 0 and relation[0] == "eo4geo:":
+        ret_ls.append("")
+    if len(relation)!=0 and relation[0]!="eo4geo:":
+        ret_ls.append(relation)
+    
+    
+    # Creating list of BoK Links
+    # Makin sure not to append empty list
+    bok_links = []
+    for i in relation:
+        bok_links.append("https://bok.eo4geo.eu/" + str(i[6:]))
+    if len(bok_links)==0:
+        ret_ls.append("")
+    else:
+        ret_ls.append(bok_links)
+    
+    return(ret_ls)
+    
+    
+    
+
+
+list_of_metadata = []
+for url in url_list:
+    list_of_metadata.append(scrape_BS(url,get_html(url)))
+
+def format_html_table(df):
+    import numpy as np
+    df_2 = df.copy()
+    df_2["Title"] = df_2["Title"].replace("", "///")
+    df_2["Creator"] = np.where(df_2["Creator"]!="", "Yes", "///")
+    df_2["Abstract"] = np.where(df_2["Abstract"]!="", "Yes", "///")
+    df_2["Description"] = np.where(df_2["Description"]!="", "Yes", "///")
+    df_2["Contributors"] = np.where(df_2["Contributors"] != "" , "Yes", "///")
+    df_2["Date created"] = np.where(df_2["Date created"]!="", "Yes", "///")
+    df_2["Relation/s"] = np.where(df_2["Relation/s"]!="", "Yes", "///")
+    df_2["Language"] = df_2["Language"].replace("", "///")
+    return df_2
+
+
+def write_html(meta_df):
+    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
+<p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<!--HTML TABLE START IN LINDE BELOW-->'''
+    html = open("index.html","w")
+    html.write(header)
+    html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
+
+
+"""
+____________________________________________________________________________
+"""
+
 
 
 """Extracts MetaData part ftom full HTML text, removes formatiing characters"""
@@ -196,44 +427,79 @@ def scrape(url_list):
             """
         ls.append(item)
     return(ls)
-print_status = False
-start_time = time.time()
+
+
+
+"""
+DF creation for comment MD scraping
+"""
+
+"""
 #turn resulting list from scrape into pd DataFrame
 df = pd.DataFrame(scrape(url_list))
+df = pd.DataFrame()
 #Give df columns names
 df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
 #export to csv
 df.to_csv("metadata_presentations.csv",index=False)
+"""
+
+
+"""
+DF creation for new RDFa method
+"""
+# Creating DF from List
+df = pd.DataFrame.from_records(list_of_metadata)
+# Giving column names
+df.columns = ["URL","Added Metadata?","Title","Creator","Publisher","Abstract","Description","Language","Type", "EQF","Contributors","Date created","Relation/s","BoK Links"]
+
+
+# Adding Banner links to DF
+# empty list to hold links in correct order
+banner_list = []
+#Cycling through URL list of DF
+for url in df["URL"]:
+    # Adding URL prefix of server
+    # Extracting Name of course from link
+    # ending with png for file ending
+    banner_list.append("https://eo4geo.sbg.ac.at/banner/"+url[32:-1]+".png")
+
+# Adding Graph links to DF
+# empty list to hold links in correct order
+graph_list = []
+for url in df["URL"]:
+    # Adding URL prefix of server
+    # Extracting Name of course from link
+    # ending with URL for graph
+    graph_list.append("https://eo4geocourses.github.io/ConceptChart/ConceptChart.html?id="+url[32:-1])
+        
+#Appending Link to Banner image
+df["banner_link"] = banner_list
+#Appending Link to Banner image
+df["graph_link"] = graph_list
+
+
+# Export to final output csv
+df.to_csv("metadata_presentations.csv",index=False)
+ #put copy in graph subfolder
+df.to_csv("graphs/metadata_presentations.csv",index=False)
+#print(df)
+
+
+
+
+#Cleaning up table for hmtl writing
+df_html = format_html_table(df)
+#writing cleaned up table to html
+write_html(df_html)
+
+
+
+
+
+print_status = False
 if print_status == True:
+    print(df.head(5),"\n\n")
     print("Data sucessfully saved to 'metadata_presentations.csv'")
     print("Elapsed time in seconds: ", round(time.time()-start_time,2))
-def write_html(meta_df):
-    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
-<p style="text-align: left;">This table is updated automatically to show the progress of metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
-<p style="text-align: left;">&nbsp;</p>
-<!--HTML TABLE START IN LINDE BELOW-->'''
-    html = open("index.html","w")
-    html.write(header)
-    html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
-
-def format_html_table(df):
-    import numpy as np
-    df_2 = df.copy()
-    df["Title"] = df["Title"].replace("", "///")
-    df["Creator"] = np.where(df["Creator"]!="", "Yes", "///")
-    df["Abstract"] = np.where(df["Abstract"]!="", "Yes", "///")
-    df["Description"] = np.where(df["Description"]!="", "Yes", "///")
-    df["Contributors"] = np.where(df["Contributors"]!="", "Yes", "///")
-    df["Date created"] = np.where(df["Date created"]!="", "Yes", "///")
-    df["Relation/s"] = np.where(df["Relation/s"]!="", "Yes", "///")
-    df["Language"] = df["Language"].replace("", "///")
-    return df_2
-df_2 = format_html_table(df)
-
-write_html(format_html_table(df))
+del start_time, print_status
