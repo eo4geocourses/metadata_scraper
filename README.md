@@ -8,15 +8,20 @@ The index.html file contains a modified table of the csv in order to more quickl
   
   
 The following information is extracted per course:  
-  
+
+* URL  
 * title
 * creator
+* publisher
 * abstract
 * description
+* langauge
 * contributor
 * created
-* relation
-* language
+* content type
+* education level (EQF)
+* relation/s
+* language/s
     
     
 
