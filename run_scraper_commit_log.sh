@@ -1,11 +1,12 @@
-echo "/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\" >> /home/simon/Git/metadata_scraper/log_file.txt;
+
+echo '/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\' >> /home/simon/Git/metadata_scraper/log_file.txt;
 cd /home/simon/Git/metadata_scraper/;
 echo "running scraper...";
 python3 /home/simon/Git/metadata_scraper/raw_code.py;
 sleep 2;
 python3 /home/simon/Git/metadata_scraper/graphs/graphs.py;
 sleep 2;
-echo "Python programs completed (writing .csv, .html and .json)" >> /home/simon/Git/metadata_scraper/log_file.txt;
+echo "Python programs completed -- writing .csv, .html and .json" >> /home/simon/Git/metadata_scraper/log_file.txt;
 echo "commiting to GitHub and writing to log file";
 date >>/home/simon/Git/metadata_scraper/log_file.txt;
 echo "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ " >> /home/simon/Git/metadata_scraper/log_file.txt;
