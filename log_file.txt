@@ -1,18 +1,7 @@
-
-scraping and writing to csv complete
-Mo 2. Nov 18:33:11 CET 2020
-[master 682ae42] automatic shell commit
- 2 files changed, 3 insertions(+)
- create mode 100644 meatadata_presentations.json
-_______________________________
-scraping and writing to csv complete
-Mo 2. Nov 18:34:21 CET 2020
-[master cd7d129] automatic shell commit
- 1 file changed, 6 insertions(+)
-_______________________________
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 Python programs completed -- writing .csv, .html and .json
-Mo 2. Nov 18:52:24 CET 2020
+Mo 2. Nov 18:54:36 CET 2020
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 On branch master
 Your branch is up-to-date with 'origin/master'.
