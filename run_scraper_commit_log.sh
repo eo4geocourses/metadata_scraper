@@ -1,11 +1,13 @@
 cd /home/simon/Git/metadata_scraper/;
 echo "running scraper...";
 python3 /home/simon/Git/metadata_scraper/raw_code.py;
-sleep 5;
+sleep 2;
+python3 /home/simon/Git/metadata_scraper/graphs/graphs.py;
+sleep 2;
 echo "scraping and writing to csv complete" >> /home/simon/Git/metadata_scraper/log_file.txt;
 echo "commiting to GitHub and writing to log file";
 date >>/home/simon/Git/metadata_scraper/log_file.txt;
-sleep 5;
+sleep 2;
 git status;
 sleep 2;
 git add *;
