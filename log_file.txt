@@ -1,3 +1,9 @@
 
 scraping and writing to csv complete
 Mo 2. Nov 18:33:11 CET 2020
+[master 682ae42] automatic shell commit
+ 2 files changed, 3 insertions(+)
+ create mode 100644 meatadata_presentations.json
+_______________________________
+scraping and writing to csv complete
+Mo 2. Nov 18:34:21 CET 2020
