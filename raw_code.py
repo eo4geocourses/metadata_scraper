@@ -96,6 +96,9 @@ def scrape_BS(url,htmltext):
     created = ""
     relation = []
     language = ""
+    education_level = ""
+    content_type = ""
+    publisher = ""
    
     
     for tag in soup.find_all("meta"):
@@ -116,7 +119,12 @@ def scrape_BS(url,htmltext):
         elif tag.get("property", None) == "dc:creator":
             #ret_ls.append(tag.get("content", None))
             creator = tag.get("content", None)
-    
+
+        elif tag.get("property", None) == "dc:publisher":
+            #ret_ls.append(tag.get("content", None))
+            publisher = tag.get("content", None)
+            
+            
 #        elif tag.get("property", None) == "dc:subject":
 #            print(tag.get("content", None))
     
@@ -143,8 +151,9 @@ def scrape_BS(url,htmltext):
             #ret_ls.append(tag.get("content", None))
             created = tag.get("content", None)
             
-#        elif tag.get("property", None) == "dc:type":
-#            print(tag.get("content", None))
+        elif tag.get("property", None) == "dc:type":
+            #print(tag.get("content", None))
+            content_type = tag.get("content", None)
             
 #        elif tag.get("property", None) == "dc:format":
 #            print(tag.get("content", None))
@@ -162,8 +171,9 @@ def scrape_BS(url,htmltext):
 #        elif tag.get("property", None) == "dc:audience":
 #            print(tag.get("content", None))
             
-#        elif tag.get("property", None) == "dc:educationLevel":
-#            print(tag.get("content", None))
+        elif tag.get("property", None) == "dc:educationLevel":
+            #print(tag.get("content", None))
+            education_level = tag.get("content", None)
             
 #        elif tag.get("property", None) == "dc:source":
 #            print(tag.get("content", None))
@@ -175,33 +185,59 @@ def scrape_BS(url,htmltext):
 #            print(tag.get("content", None))
         
         #Extra list for individual relation tags
-        elif tag.get("property", None) == "dc:relation":
-            relation.append(tag.get("content", None))
+#        elif tag.get("property", None) == "dc:relation":
+#            relation.append(tag.get("content", None))
+
+#        elif tag.get("link", None) == "dc:relation":
+#            relation.append(tag.get("content", None))
+#            print(relation)
+
+
+
+    for link in soup.find_all('link', href=True):
+        if "eo4geo:" in link['href']:
+            relation.append(link['href'])
+
     
     #append extracting MD values in corect order
     ret_ls.append(url)
     ret_ls.append(changed)
     ret_ls.append(title)
     ret_ls.append(creator)
+    ret_ls.append(publisher)
     ret_ls.append(abstract)
     ret_ls.append(description)
+    ret_ls.append(language)
+    ret_ls.append(content_type)
+    ret_ls.append(education_level)
     
     #making sure not to append empty list
     if len(contributor) == 0:
         ret_ls.append("")
     else:
         ret_ls.append(contributor)
+        
     ret_ls.append(created)
     
     # Making sure not to append empty relations list
+    # Making sure not to add list with only eo4geo: inside
     if len(relation) == 0:
         ret_ls.append("")
-    else:
+    if len(relation) != 0 and relation[0] == "eo4geo:":
+        ret_ls.append("")
+    if len(relation)!=0 and relation[0]!="eo4geo:":
         ret_ls.append(relation)
     
-    ret_ls.append(language)
     
-    
+    # Creating list of BoK Links
+    # Makin sure not to append empty list
+    bok_links = []
+    for i in relation:
+        bok_links.append("https://bok.eo4geo.eu/" + str(i[6:]))
+    if len(bok_links)==0:
+        ret_ls.append("")
+    else:
+        ret_ls.append(bok_links)
     
     return(ret_ls)
     
@@ -409,16 +445,13 @@ df.to_csv("metadata_presentations.csv",index=False)
 """
 
 
-
-
-
 """
 DF creation for new RDFa method
 """
 # Creating DF from List
 df = pd.DataFrame.from_records(list_of_metadata)
 # Giving column names
-df.columns = ["URL","Added Metadata?","Title","Creator","Abstract","Description","Contributors","Date created","Relation/s","Language"]
+df.columns = ["URL","Added Metadata?","Title","Creator","Publisher","Abstract","Description","Language","Type", "EQF","Contributors","Date created","Relation/s","BoK Links"]
 
 
 # Adding Banner links to DF
@@ -430,10 +463,22 @@ for url in df["URL"]:
     # Extracting Name of course from link
     # ending with png for file ending
     banner_list.append("https://eo4geo.sbg.ac.at/banner/"+url[32:-1]+".png")
-    
-    
+
+# Adding Graph links to DF
+# empty list to hold links in correct order
+graph_list = []
+for url in df["URL"]:
+    # Adding URL prefix of server
+    # Extracting Name of course from link
+    # ending with URL for graph
+    graph_list.append("https://eo4geocourses.github.io/ConceptChart/ConceptChart.html?id="+url[32:-1])
+        
 #Appending Link to Banner image
 df["banner_link"] = banner_list
+#Appending Link to Banner image
+df["graph_link"] = graph_list
+
+
 # Export to final output csv
 df.to_csv("metadata_presentations.csv",index=False)
  #put copy in graph subfolder
