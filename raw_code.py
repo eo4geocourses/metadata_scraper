@@ -233,7 +233,7 @@ def scrape_BS(url,htmltext):
     # Makin sure not to append empty list
     bok_links = []
     for i in relation:
-        bok_links.append("https://bok.eo4geo.eu/" + str(i[6:]))
+        bok_links.append("https://bok.eo4geo.eu/" + str(i[7:]))
     if len(bok_links)==0:
         ret_ls.append("")
     else:
