@@ -1,1 +1,3 @@
 
+scraping and writing to csv complete
+Mo 2. Nov 18:33:11 CET 2020
