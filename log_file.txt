@@ -76,3 +76,27 @@ Changes not staged for commit:
 	deleted:    meatadata_presentations.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master caf9e81] automatic shell commit
+ 1 file changed, 20 insertions(+)
+script finished
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Di 3. Nov 12:48:28 CET 2020
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Python programs completed -- writing .csv, .html and .json
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+Updating caf9e81..a626198
+Fast-forward
+ graphs/meatadata_presentations.json | 1 -
+ meatadata_presentations.json        | 1 -
+ 2 files changed, 2 deletions(-)
+ delete mode 100644 graphs/meatadata_presentations.json
+ delete mode 100644 meatadata_presentations.json
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   log_file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
