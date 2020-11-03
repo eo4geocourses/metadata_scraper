@@ -62,7 +62,16 @@ def get_html(url):
     return(htmltext)
 
 
-
+"""Takes URL, returns if Repo is status 404 or 200"""
+def get_html_code(url):
+    url_answer = requests.get(url)
+    if str(url_answer) == "<Response [404]>":
+        return("Private")
+    if str(url_answer) == "<Response [200]>":
+        return("Public")
+    else:
+        return("UNKNOWN")
+    
 
 
 """ORDER OF RETURN LIST:
@@ -207,6 +216,7 @@ def scrape_BS(url,htmltext):
     #append extracted MD information in corect order
     ret_ls.append(url)
     ret_ls.append(url_repo)
+    ret_ls.append(get_html_code(url_repo)) # Getting HTML answer code from Repo
     ret_ls.append(changed)
     ret_ls.append(title)
     ret_ls.append(creator)
@@ -463,7 +473,7 @@ DF creation for new RDFa method
 # Creating DF from List
 df = pd.DataFrame.from_records(list_of_metadata)
 # Giving column names
-df.columns = ["URL", "Repo_URL","Added Metadata?","Title","Creator","Publisher","Abstract","Description",
+df.columns = ["URL", "Repo_URL","Public/Private","Added Metadata?","Title","Creator","Publisher","Abstract","Description",
               "Language","Type", "EQF","Contributors","Date created","Relation/s","BoK Links", "License", "Size or Duration","Format"]
 
 
