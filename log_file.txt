@@ -56,3 +56,23 @@ Untracked files:
 	graphs/metadata_presentations.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master 9d860f4] automatic shell commit
+ 3 files changed, 27 insertions(+)
+ create mode 100644 graphs/metadata_presentations.json
+script finished
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Di 3. Nov 12:46:22 CET 2020
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Python programs completed -- writing .csv, .html and .json
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+Already up-to-date.
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   log_file.txt
+	deleted:    meatadata_presentations.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
