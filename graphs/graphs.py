@@ -132,7 +132,7 @@ import json
 json_str = json.dumps(final_list)
 
 #write list to JSON file in same dict
-with open('meatadata_presentations.json', 'w') as json_file:
+with open('metadata_presentations.json', 'w') as json_file:
     json.dump(final_list, json_file)
 
 
