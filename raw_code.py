@@ -271,34 +271,6 @@ list_of_metadata = []
 for url in url_list:
     list_of_metadata.append(scrape_BS(url,get_html(url)))
 
-def format_html_table(df):
-    import numpy as np
-    df_2 = df.copy()
-    df_2["Title"] = df_2["Title"].replace("", "///")
-    df_2["Creator"] = np.where(df_2["Creator"]!="", "Yes", "///")
-    df_2["Abstract"] = np.where(df_2["Abstract"]!="", "Yes", "///")
-    df_2["Description"] = np.where(df_2["Description"]!="", "Yes", "///")
-    df_2["Contributors"] = np.where(df_2["Contributors"] != "" , "Yes", "///")
-    df_2["Date created"] = np.where(df_2["Date created"]!="", "Yes", "///")
-    df_2["Relation/s"] = np.where(df_2["Relation/s"]!="", "Yes", "///")
-    df_2["Language"] = df_2["Language"].replace("", "///")
-    return df_2
-
-
-def write_html(meta_df):
-    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;">&nbsp;</h4>
-<h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
-<p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
-<p style="text-align: left;">&nbsp;</p>
-<!--HTML TABLE START IN LINDE BELOW-->'''
-    html = open("index.html","w")
-    html.write(header)
-    html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
 
 
 """
@@ -307,7 +279,7 @@ ____________________________________________________________________________
 
 
 
-"""Extracts MetaData part ftom full HTML text, removes formatiing characters"""
+"""Extracts MetaData part ftom full HTML text, removes formating characters"""
 def extract_metadata(htmltext):
     metadata_start = htmltext[htmltext.find("AUTHORS: DEFINE METADATA FOR WHOLE SLIDESET HERE:"):]
     metadata_end = metadata_start[:metadata_start.find("-->",50)]
@@ -474,7 +446,7 @@ DF creation for new RDFa method
 df = pd.DataFrame.from_records(list_of_metadata)
 # Giving column names
 df.columns = ["URL", "Repo_URL","Public/Private","Added Metadata?","Title","Creator","Publisher","Abstract","Description",
-              "Language","Type", "EQF","Contributors","Date created","Relation/s","BoK Links", "License", "Size or Duration","Format"]
+              "Language","Type", "EQF", "License", "Size or Duration","Format","Contributors","Date created","Relation/s","BoK Links"]
 
 
 
@@ -512,6 +484,9 @@ Cleaning DF of Private Repositories
 indexNames = df[df['Public/Private'] == "Private"].index
 df.drop(indexNames , inplace=True)
 
+"""
+Export of final pandas dataframe to csvs
+"""
 # Export to final output csv
 df.to_csv("metadata_presentations.csv",index=False)
  #put copy in graph subfolder
@@ -519,6 +494,44 @@ df.to_csv("graphs/metadata_presentations.csv",index=False)
 #print(df)
 
 
+
+
+
+
+
+"""
+HTML table Stuff
+_____________________________________________________________________________
+
+"""
+def format_html_table(df):
+    import numpy as np
+    df_2 = df.copy()
+    df_2["Title"] = df_2["Title"].replace("", "///")
+    df_2["Creator"] = np.where(df_2["Creator"]!="", "Yes", "///")
+    df_2["Abstract"] = np.where(df_2["Abstract"]!="", "Yes", "///")
+    df_2["Description"] = np.where(df_2["Description"]!="", "Yes", "///")
+    df_2["Contributors"] = np.where(df_2["Contributors"] != "" , "Yes", "///")
+    df_2["Date created"] = np.where(df_2["Date created"]!="", "Yes", "///")
+    df_2["Relation/s"] = np.where(df_2["Relation/s"]!="", "Yes", "///")
+    df_2["Language"] = df_2["Language"].replace("", "///")
+    return df_2
+
+
+def write_html(meta_df):
+    header = '''<p><span style="text-decoration: underline;"><strong><img style="float: left;" src="https://eo4geo.sbg.ac.at/PLUS/EO4GEO_logo.png" alt="EO4GEO Logo" width="220" height="167" /></strong></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;">&nbsp;</h4>
+<h4 style="text-align: left;"><span style="text-decoration: underline;"><strong><br />EO4GEO</strong> Course Material Metadata Status<br /></span></h4>
+<p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<!--HTML TABLE START IN LINDE BELOW-->'''
+    html = open("index.html","w")
+    html.write(header)
+    html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
 
 
 #Cleaning up table for hmtl writing
