@@ -477,6 +477,9 @@ df.columns = ["URL", "Repo_URL","Public/Private","Added Metadata?","Title","Crea
               "Language","Type", "EQF","Contributors","Date created","Relation/s","BoK Links", "License", "Size or Duration","Format"]
 
 
+
+
+
 # Adding Banner links to DF
 # empty list to hold links in correct order
 banner_list = []
@@ -501,6 +504,13 @@ df["banner_link"] = banner_list
 #Appending Link to Banner image
 df["graph_link"] = graph_list
 
+
+
+"""
+Cleaning DF of Private Repositories
+"""
+indexNames = df[df['Public/Private'] == "Private"].index
+df.drop(indexNames , inplace=True)
 
 # Export to final output csv
 df.to_csv("metadata_presentations.csv",index=False)
