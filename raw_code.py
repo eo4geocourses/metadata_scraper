@@ -52,9 +52,6 @@ url_list = [
 ]
 
 
-#TEMP LIST TO SCRAPE ONLY PLUS REPO
-#url_list = ["https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/"]
-
 
 
 """Takes URL, returns HTML as string"""
@@ -83,7 +80,10 @@ def get_html(url):
 def scrape_BS(url,htmltext):
     
     
-    
+    url_repo = ""
+    sizeOrDuration = ""
+    format_tag = ""
+    license_tag = ""
     soup = BeautifulSoup(htmltext,features="lxml")
     ret_ls = []             #Resetting return list
     # Setting empty variables to fill by meta tags
@@ -155,15 +155,17 @@ def scrape_BS(url,htmltext):
             #print(tag.get("content", None))
             content_type = tag.get("content", None)
             
-#        elif tag.get("property", None) == "dc:format":
+        elif tag.get("property", None) == "dc:format":
 #            print(tag.get("content", None))
+            format_tag = tag.get("content", None)
             
         elif tag.get("property", None) == "dc:language":
             #ret_ls.append(tag.get("content", None))
            language = tag.get("content", None)
             
-#        elif tag.get("property", None) == "dc:SizeOrDuration":
+        elif tag.get("property", None) == "dc:SizeOrDuration":
 #            print(tag.get("content", None))
+            sizeOrDuration = tag.get("content", None)
             
 #        elif tag.get("property", None) == "dc:audience":
 #            print(tag.get("content", None))
@@ -181,8 +183,9 @@ def scrape_BS(url,htmltext):
 #        elif tag.get("property", None) == "dc:rightsHolder":
 #            print(tag.get("content", None))
     
-#        elif tag.get("property", None) == "dc:license":
+        elif tag.get("property", None) == "dc:license":
 #            print(tag.get("content", None))
+            license_tag = tag.get("content", None)
         
         #Extra list for individual relation tags
 #        elif tag.get("property", None) == "dc:relation":
@@ -193,14 +196,17 @@ def scrape_BS(url,htmltext):
 #            print(relation)
 
 
+    # Add URL to unhosted Repo to list
+    url_repo = "https://github.com/eo4geocourses/" + url[32:]
 
     for link in soup.find_all('link', href=True):
         if "eo4geo:" in link['href']:
             relation.append(link['href'])
 
     
-    #append extracting MD values in corect order
+    #append extracted MD information in corect order
     ret_ls.append(url)
+    ret_ls.append(url_repo)
     ret_ls.append(changed)
     ret_ls.append(title)
     ret_ls.append(creator)
@@ -210,6 +216,10 @@ def scrape_BS(url,htmltext):
     ret_ls.append(language)
     ret_ls.append(content_type)
     ret_ls.append(education_level)
+    
+    ret_ls.append(license_tag)
+    ret_ls.append(sizeOrDuration)
+    ret_ls.append(format_tag)
     
     #making sure not to append empty list
     if len(contributor) == 0:
@@ -453,7 +463,8 @@ DF creation for new RDFa method
 # Creating DF from List
 df = pd.DataFrame.from_records(list_of_metadata)
 # Giving column names
-df.columns = ["URL","Added Metadata?","Title","Creator","Publisher","Abstract","Description","Language","Type", "EQF","Contributors","Date created","Relation/s","BoK Links"]
+df.columns = ["URL", "Repo_URL","Added Metadata?","Title","Creator","Publisher","Abstract","Description",
+              "Language","Type", "EQF","Contributors","Date created","Relation/s","BoK Links", "License", "Size or Duration","Format"]
 
 
 # Adding Banner links to DF
