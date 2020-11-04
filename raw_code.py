@@ -98,7 +98,7 @@ def scrape_BS(url,htmltext):
     # Setting empty variables to fill by meta tags
     title = ""
     changed = ""
-    creator = ""
+    creator = []
     abstract = ""
     description = ""
     contributor = []
@@ -127,7 +127,7 @@ def scrape_BS(url,htmltext):
             
         elif tag.get("property", None) == "dc:creator":
             #ret_ls.append(tag.get("content", None))
-            creator = tag.get("content", None)
+            creator.append(tag.get("content", None))
 
         elif tag.get("property", None) == "dc:publisher":
             #ret_ls.append(tag.get("content", None))
@@ -215,11 +215,18 @@ def scrape_BS(url,htmltext):
     
     #append extracted MD information in corect order
     ret_ls.append(url)
-    ret_ls.append(url_repo)
     ret_ls.append(get_html_code(url_repo)) # Getting HTML answer code from Repo
     ret_ls.append(changed)
     ret_ls.append(title)
-    ret_ls.append(creator)
+
+    #making sure not to append empty contributor list
+    if len(creator) == 0:
+        ret_ls.append("")
+    if len(creator) != 0 and len(creator[0]) == 0:
+           ret_ls.append("")
+    if len(creator) != 0 and creator[0] != "" and len(creator[0])!=0:
+        ret_ls.append(creator)
+    
     ret_ls.append(publisher)
     ret_ls.append(abstract)
     ret_ls.append(description)
@@ -260,13 +267,14 @@ def scrape_BS(url,htmltext):
         ret_ls.append("")
     else:
         ret_ls.append(bok_links)
-    
+    # Append URL Repo last
+    ret_ls.append(url_repo)
     return(ret_ls)
     
     
     
 
-
+# Running Scraper
 list_of_metadata = []
 for url in url_list:
     list_of_metadata.append(scrape_BS(url,get_html(url)))
@@ -445,8 +453,8 @@ DF creation for new RDFa method
 # Creating DF from List
 df = pd.DataFrame.from_records(list_of_metadata)
 # Giving column names
-df.columns = ["URL", "Repo_URL","Public/Private","Added Metadata?","Title","Creator","Publisher","Abstract","Description",
-              "Language","Type", "EQF", "License", "Size or Duration","Format","Contributors","Date created","Relation/s","BoK Links"]
+df.columns = ["URL","Public/Private","Added Metadata?","Title","Creator","Publisher","Abstract","Description",
+              "Language","Type", "EQF", "License", "Size or Duration","Format","Contributors","Date created","Relation/s","BoK Links", "Repo_URL"]
 
 
 
@@ -477,6 +485,10 @@ df["banner_link"] = banner_list
 df["graph_link"] = graph_list
 
 
+# Rearrange Order
+df = df[["URL","Public/Private","Added Metadata?","Title","Creator","Publisher","Abstract","Description",
+              "Language","Type", "EQF", "License", "Size or Duration","Format","Contributors","Date created","Relation/s",
+              "BoK Links","banner_link","graph_link", "Repo_URL"]]
 
 """
 Cleaning DF of Private Repositories
