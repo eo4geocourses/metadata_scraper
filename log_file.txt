@@ -251,3 +251,27 @@ Changes not staged for commit:
 	modified:   metadata_presentations.csv
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master 35cb67e] automatic shell commit
+ 5 files changed, 200 insertions(+), 160 deletions(-)
+script finished
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Fr 6. Nov 15:38:43 CET 2020
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Python programs completed -- writing .csv, .html and .json
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+Updating 35cb67e..f3622de
+Fast-forward
+ raw_code.py | 42 +++++++++++++++++++++++-------------------
+ 1 file changed, 23 insertions(+), 19 deletions(-)
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   graphs/metadata_presentations.csv
+	modified:   index.html
+	modified:   log_file.txt
+	modified:   metadata_presentations.csv
+
+no changes added to commit (use "git add" and/or "git commit -a")
