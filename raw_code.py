@@ -497,25 +497,6 @@ df = df[["URL","Public/Private","Added Metadata?","Title","Creator","Publisher",
               "Language","Type", "EQF", "License", "Size or Duration","Format","Contributors","Date created","Relation/s",
               "BoK Links","banner_link","graph_link", "Repo_URL"]]
 
-"""
-Cleaning DF of Private Repositories
-"""
-indexNames = df[df['Public/Private'] == "Private"].index
-df.drop(indexNames , inplace=True)
-
-"""
-Export of final pandas dataframe to csvs
-"""
-# Export to final output csv
-df.to_csv("metadata_presentations.csv",index=False)
- #put copy in graph subfolder
-df.to_csv("graphs/metadata_presentations.csv",index=False)
-#print(df)
-
-
-
-
-
 
 
 """
@@ -568,3 +549,26 @@ if print_status == True:
     print("Data sucessfully saved to 'metadata_presentations.csv'")
     print("Elapsed time in seconds: ", round(time.time()-start_time,2))
 del start_time, print_status
+
+
+
+
+
+
+
+
+
+"""
+Cleaning DF of Private Repositories
+"""
+indexNames = df[df['Public/Private'] == "Private"].index
+df.drop(indexNames , inplace=True)
+
+"""
+Export of final pandas dataframe to csvs
+"""
+# Export to final output csv
+df.to_csv("metadata_presentations.csv",index=False)
+ #put copy in graph subfolder
+df.to_csv("graphs/metadata_presentations.csv",index=False)
+#print(df)
