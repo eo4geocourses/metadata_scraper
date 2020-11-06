@@ -103,7 +103,7 @@ def scrape_BS(url,htmltext):
     contributor = []
     created = ""
     relation = []
-    language = ""
+    language = []
     education_level = ""
     content_type = ""
     publisher = ""
@@ -229,7 +229,16 @@ def scrape_BS(url,htmltext):
     ret_ls.append(publisher)
     ret_ls.append(abstract)
     ret_ls.append(description)
+    #
     ret_ls.append(language)
+       #making sure not to append empty contributor list
+    if len(language) == 0:
+        ret_ls.append("")
+    if len(language) != 0 and len(language[0]) == 0:
+           ret_ls.append("")
+    if len(language) != 0 and language[0] != "" and len(language[0])!=0:
+        ret_ls.append(creator)
+   
     ret_ls.append(content_type)
     ret_ls.append(education_level)
     
