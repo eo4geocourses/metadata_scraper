@@ -39,7 +39,6 @@ url_list = [
 "https://eo4geocourses.github.io/ClimateKIC_Copernicus-Service-Climate-Change/",
 "https://eo4geocourses.github.io/ClimateKIC_Copernicus-Service-Atmosphere/",
 "https://eo4geocourses.github.io/IES_EO-for-Managers/",
-"https://eo4geocourses.github.io/FSU-Jena_Persistent-Scaterrer-Interferometry/",
 "https://eo4geocourses.github.io/FSU-Jena_SAR-Data-for-Flood-Mapping/",
 "https://eo4geocourses.github.io/ROSA_Change-Detection-in-optical-Data/",
 "https://eo4geocourses.github.io/UNIBAS_Remote-Sensing-Environment/",
@@ -51,7 +50,7 @@ url_list = [
 "https://eo4geocourses.github.io/PLUS_OBIA-Introduction/"
 ]
 
-
+"""repositories to be added later: "https://eo4geocourses.github.io/FSU-Jena_Persistent-Scaterrer-Interferometry/","""
 
 
 """Takes URL, returns HTML as string"""
