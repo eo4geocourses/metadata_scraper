@@ -229,9 +229,8 @@ def scrape_BS(url,htmltext):
     ret_ls.append(publisher)
     ret_ls.append(abstract)
     ret_ls.append(description)
-    #
-    ret_ls.append(language)
-       #making sure not to append empty contributor list
+   
+       #making sure not to append empty language list
     if len(language) == 0:
         ret_ls.append("")
     if len(language) != 0 and len(language[0]) == 0:
