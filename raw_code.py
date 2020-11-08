@@ -236,7 +236,7 @@ def scrape_BS(url,htmltext):
     if len(language) != 0 and len(language[0]) == 0:
            ret_ls.append("")
     if len(language) != 0 and language[0] != "" and len(language[0])!=0:
-        ret_ls.append(creator)
+        ret_ls.append(language)
    
     ret_ls.append(content_type)
     ret_ls.append(education_level)
