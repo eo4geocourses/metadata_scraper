@@ -13,42 +13,17 @@ from bs4 import BeautifulSoup
 start_time = time.time()
 
 
-
-url_list = [
-"https://eo4geocourses.github.io/PLUS_Practice-Image-Processing/",
-"https://eo4geocourses.github.io/VITO_TerraScope_TrainingPack_Application_Example/",
-"https://eo4geocourses.github.io/VITO_Data_Access_In_Terrascope/",
-"https://eo4geocourses.github.io/VITO_Cloud_Infrastructure/",
-"https://eo4geocourses.github.io/GISIG_Introduction_to_EO4GEO/",
-"https://eo4geocourses.github.io/SpaSe_OBIA-for-Operations-Copernicus-Service-Challenge-Practical-Example/",
-"https://eo4geocourses.github.io/GEOF_Understanding-the-concept-of-EO-time-series/",
-"https://eo4geocourses.github.io/GEOF_Basic-GIS-knowledge-vector-and-raster-data/",
-"https://eo4geocourses.github.io/GEOF_Copernicus-Service-Land/",
-"https://eo4geocourses.github.io/GEOF_EO-Data-sources/",
-"https://eo4geocourses.github.io/GEOF_Validation-of-EO-products/",
-"https://eo4geocourses.github.io/GEOF_Preprocessing-of-EO-data/",
-"https://eo4geocourses.github.io/GEOF_Legal-issues-in-EO-GI/",
-"https://eo4geocourses.github.io/UT-ITC_Satellite_Data_Classification_Random_Forests/",
-"https://eo4geocourses.github.io/UT-ITC_Satellite_Data_Classification_Decision_Trees/",
-"https://eo4geocourses.github.io/UNEP-GRID_Introduction-to-GIS/",
-"https://eo4geocourses.github.io/KULeuven_Technical-Introduction-to-SDI/",
-"https://eo4geocourses.github.io/KULeuven_Management-View-on-SDI/",
-"https://eo4geocourses.github.io/KULeuven_Introduction-CitizenScience-in-GI-and-EO/",
-"https://eo4geocourses.github.io/IGIK_Sentinel2-Data-and-Vegetation-Indices/",
-"https://eo4geocourses.github.io/IGIK_Introduction-to-Remote-Sensing/",
-"https://eo4geocourses.github.io/ClimateKIC_Copernicus-Service-Climate-Change/",
-"https://eo4geocourses.github.io/ClimateKIC_Copernicus-Service-Atmosphere/",
-"https://eo4geocourses.github.io/IES_EO-for-Managers/",
-"https://eo4geocourses.github.io/FSU-Jena_SAR-Data-for-Flood-Mapping/",
-"https://eo4geocourses.github.io/ROSA_Change-Detection-in-optical-Data/",
-"https://eo4geocourses.github.io/UNIBAS_Remote-Sensing-Environment/",
-"https://eo4geocourses.github.io/UNIBAS_Methods-Techniques-EO/",
-"https://eo4geocourses.github.io/UJI_Introduction-to-Programming/",
-"https://eo4geocourses.github.io/UJI_Reproducible-Research-Practices-in-Geosciences/",
-"https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data/",
-"https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/",
-"https://eo4geocourses.github.io/PLUS_OBIA-Introduction/"
-]
+#Reading lines from file and appending to list
+url_list_file = []
+list_file = open("repo_links.txt","r")
+for line in list_file:
+    url_list_file.append(line)
+# stripping newline characters etc from list
+url_list = []
+for i in url_list_file:
+    url_list.append(i.strip())
+del url_list_file
+    
 
 """repositories to be added later: "https://eo4geocourses.github.io/FSU-Jena_Persistent-Scaterrer-Interferometry/","""
 
@@ -529,7 +504,7 @@ def write_html(meta_df):
 <p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
 <p style="text-align: left;">&nbsp;</p>
 <!--HTML TABLE START IN LINDE BELOW-->'''
-    html = open("index.html","w")
+    html = open("../index.html","w")
     html.write(header)
     html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
 
@@ -568,7 +543,4 @@ df.drop(indexNames , inplace=True)
 Export of final pandas dataframe to csvs
 """
 # Export to final output csv
-df.to_csv("metadata_presentations.csv",index=False)
- #put copy in graph subfolder
-df.to_csv("graphs/metadata_presentations.csv",index=False)
-#print(df)
+df.to_csv("../metadata_presentations.csv",index=False)

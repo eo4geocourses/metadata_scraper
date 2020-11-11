@@ -3,7 +3,7 @@ https://eo4geocourses.github.io/VITO_TerraScope_TrainingPack_Application_Example
 https://eo4geocourses.github.io/VITO_Data_Access_In_Terrascope/
 https://eo4geocourses.github.io/VITO_Cloud_Infrastructure/
 https://eo4geocourses.github.io/GISIG_Introduction_to_EO4GEO/
-https://eo4geocourses.github.io/SpaSe_OBIA-for-Operations-Copernicus-Service-Challenge-Practical-Example/
+https://eo4geocourses.github.io/SpaSe_Urban-Heat-Islands/
 https://eo4geocourses.github.io/GEOF_Understanding-the-concept-of-EO-time-series/
 https://eo4geocourses.github.io/GEOF_Basic-GIS-knowledge-vector-and-raster-data/
 https://eo4geocourses.github.io/GEOF_Copernicus-Service-Land/

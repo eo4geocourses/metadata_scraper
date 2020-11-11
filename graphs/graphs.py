@@ -20,7 +20,7 @@ def split_list(string):
 # Importing csv as pd.df
 import pandas as pd
 import numpy as np
-df = pd.read_csv("metadata_presentations.csv")
+df = pd.read_csv("../metadata_presentations.csv")
 # transfering to new df_clean
 df_clean = df[['URL', 'Relation/s']]
 # dropping all courses where Relation is undefined
