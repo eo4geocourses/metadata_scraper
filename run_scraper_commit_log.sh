@@ -1,6 +1,6 @@
 
 echo '/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\' >> /home/simon/Git/metadata_scraper/log_file.txt;
-date >>/home/simon/Git/metadata_scraper/data/log_file.txt;
+date >>/home/simon/Git/metadata_scraper/log_file.txt;
 echo '\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/' >> /home/simon/Git/metadata_scraper/log_file.txt;
 cd /home/simon/Git/metadata_scraper/;
 echo "running scraper...";
