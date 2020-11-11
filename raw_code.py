@@ -504,7 +504,7 @@ def write_html(meta_df):
 <p style="text-align: left;">This table is updated automatically to show the progress of RDFa compliant metadata annotations of the slideshows hosted on <br />GitHub Pages/IO.&nbsp;</p>
 <p style="text-align: left;">&nbsp;</p>
 <!--HTML TABLE START IN LINDE BELOW-->'''
-    html = open("../index.html","w")
+    html = open("index.html","w")
     html.write(header)
     html.write(meta_df.to_html(index=False,bold_rows=True,justify='center'))
 
@@ -543,4 +543,4 @@ df.drop(indexNames , inplace=True)
 Export of final pandas dataframe to csvs
 """
 # Export to final output csv
-df.to_csv("../metadata_presentations.csv",index=False)
+df.to_csv("metadata_presentations.csv",index=False)
