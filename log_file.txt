@@ -674,3 +674,21 @@ Changes not staged for commit:
 	modified:   metadata_presentations.csv
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master 50d85c9] automatic shell commit
+ 4 files changed, 100 insertions(+), 53 deletions(-)
+script finished
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Do 19. Nov 03:00:01 CET 2020
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Already up-to-date.
+Python programs completed -- writing .csv, .html and .json
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   log_file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
