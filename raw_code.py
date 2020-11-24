@@ -40,8 +40,10 @@ def get_html(url):
 def get_html_code(url):
     url_answer = requests.get(url)
     if str(url_answer) == "<Response [404]>":
+        print("Private -> ",url[32:])
         return("Private")
-    if str(url_answer) == "<Response [200]>":
+    elif str(url_answer) == "<Response [200]>":
+        print("Public -> ",url[32:])
         return("Public")
     else:
         return("UNKNOWN")
