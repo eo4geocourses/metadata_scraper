@@ -806,3 +806,28 @@ Changes not staged for commit:
 	modified:   metadata_presentations.csv
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master 1b8583c] automatic shell commit
+ 4 files changed, 57 insertions(+), 35 deletions(-)
+ rewrite graphs/metadata_presentations.json (79%)
+script finished
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Di 24. Nov 11:54:47 CET 2020
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Updating 1b8583c..5b98a4f
+Fast-forward
+ index.html                 | 25 ++++++++++++++++++++++++-
+ metadata_presentations.csv |  2 +-
+ raw_code.py                |  4 +++-
+ repo_links.txt             |  1 +
+ 4 files changed, 29 insertions(+), 3 deletions(-)
+Python programs completed -- writing .csv, .html and .json
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   log_file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
