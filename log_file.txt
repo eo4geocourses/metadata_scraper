@@ -1135,3 +1135,24 @@ Changes not staged for commit:
 	modified:   metadata_presentations.csv
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master 75c0177] automatic shell commit
+ 4 files changed, 26 insertions(+), 3 deletions(-)
+script finished
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Fr 4. Dez 11:10:54 CET 2020
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Updating 75c0177..e5120f2
+Fast-forward
+ run_scraper_commit_log.sh | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+Python programs completed -- writing .csv, .html and .json
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   log_file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
