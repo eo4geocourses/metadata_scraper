@@ -35,3 +35,4 @@ https://eo4geocourses.github.io/EPSIT-GIB_Urban-Heat-Islands-and-support-for-Cit
 https://eo4geocourses.github.io/UNEP-GRID_EO-for-Urban-Greenery-Management/
 https://eo4geocourses.github.io/FSU-Jena_Persistent-Scaterrer-Interferometry/
 https://eo4geocourses.github.io/scraping_testing/
+https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data
