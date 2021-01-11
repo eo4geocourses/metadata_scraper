@@ -2143,3 +2143,27 @@ Changes not staged for commit:
 	modified:   log_file.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
+[master 7875863] automatic shell commit
+ 2 files changed, 35 insertions(+), 16 deletions(-)
+script finished
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Mo 11. Jan 16:55:20 CET 2021
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+Updating 7875863..54e1f7b
+Fast-forward
+ repo_links.txt | 1 +
+ 1 file changed, 1 insertion(+)
+Python programs completed -- writing .csv, .html and .json
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   graphs/metadata_presentations.json
+	modified:   index.html
+	modified:   log_file.txt
+	modified:   metadata_presentations.csv
+
+no changes added to commit (use "git add" and/or "git commit -a")
