@@ -31,6 +31,6 @@ https://eo4geocourses.github.io/UJI_Reproducible-Research-Practices-in-Geoscienc
 https://eo4geocourses.github.io/UJI_AgroMonitoring-with-Geospatial-Data/
 https://eo4geocourses.github.io/PLUS_EO_For_Natural_Hazards/
 https://eo4geocourses.github.io/PLUS_OBIA-Introduction/
-https://eo4geocourses.github.io/EPSIT-GIB_Urban-Heat-Islands-and-support-for-City-Planning/
+https://eo4geocourses.github.io/EPSIT-GIB_Identification_of_heat_islands_to_support_city_planning/
 https://eo4geocourses.github.io/UNEP-GRID_EO-for-Urban-Greenery-Management/
 https://eo4geocourses.github.io/FSU-Jena_Persistent-Scaterrer-Interferometry/
