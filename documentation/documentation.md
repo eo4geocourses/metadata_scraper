@@ -29,6 +29,9 @@ The metadata is extracted from the DublinCore-Type annotations within the HTML c
 |Repo_URL|string|Lin to GitHub repository (not hosted pages link)|
 
 ## Structure  
+
+![Structure Image](https://raw.githubusercontent.com/eo4geocourses/metadata_scraper/master/documentation/scraper_schema.png)
+
 The process of scraping the metadata consits of 4 files:
 1. **run_scraper_commit_log.sh**
   * Bash file, used to start the whole process. It runs the python file, writes the log file and commits to GitHub.
