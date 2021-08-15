@@ -58,3 +58,8 @@ In order to commit to GitHub, the local repository must be properly set up. this
 ## Cronjob
 The run_scraper_comit_log.sh file should be ran periodically (nightly or weekly). This should be accomplished via a cronjob, with the following settings (for nightly):  
 0 3 * * * /absloutePathtoBash /abolutePathTorepo/run_scraper_commit_log.sh
+
+## Instructions to add a new Course
+1. Add link to hosted (GitHub Pages) presentation to repo_links.txt
+2. Upload representative picture in .png file format at via SFTP at the server in the folder 'banner'. File name must be identical to repository name of course.
+3. Check the next day if the scraper worked, alternatively manually run the scaper by running the shell file with bash.
