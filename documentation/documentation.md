@@ -17,14 +17,14 @@ The metadata is extracted from the DublinCore-Type annotations within the HTML c
 |Language|String|ISO 639-1 Codes for languages, e.g. "EN" for english|
 |Type|String|Specifying type of material, e.g. "teaching material","self-learning material", "webinar"|
 |EQF|String|European Qualifications Framework code|
-|Licnese|String|Link to license agreement, most commonly CC-BY-SA|
+|License|String|Link to license agreement, most commonly CC-BY-SA|
 |Size ir Duration|String|Timeframe for coursework|
 |Format|String|Presentation format, usually "html"|
 |Contributors|List|List of contributors to learning material|
 |Data created|YYYY-MM-DD|creation date of course material|
 |Relation/s|list|containing string "eo4geo:" per entry in list to define the namespace and then the according BoK Code|
 |BoK Links|list|permalinks to according BoK pages extracted from Relation/s tag|
-|banner_link|string|Link to image used for displaying course tiles. Stored on Server, format: https://eo4geo.sbg.ac.at/banner/*course_title*/.png|
+|banner_link|string|Link to image used for displaying course tiles. Stored on Server, format: https://eo4geo.sbg.ac.at/banner/*course_title*.png|
 |graph_link|string|link to concept charts|
 |Repo_URL|string|Lin to GitHub repository (not hosted pages link)|
 
