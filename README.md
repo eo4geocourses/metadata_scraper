@@ -23,7 +23,7 @@ The following information is extracted per course:
 |Language|String|ISO 639-1 Codes for languages, e.g. "EN" for english|
 |Type|String|Specifying type of material, e.g. "teaching material","self-learning material", "webinar"|
 |EQF|String|European Qualifications Framework code|
-|Licnese|String|Link to license agreement, most commonly CC-BY-SA|
+|License|String|Link to license agreement, most commonly CC-BY-SA|
 |Size ir Duration|String|Timeframe for coursework|
 |Format|String|Presentation format, usually "html"|
 |Contributors|List|List of contributors to learning material|
