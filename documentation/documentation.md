@@ -19,4 +19,4 @@ The scraping process creates the following outputs:
 3. **graphs/metadata_presentations.json**
   * JOSN, holding Information on content type tags. It is used to create visualizations on an external webpage.
 4. **log_file.txt**
-  * automatically logs infomration on when and how the program was run. Does not contain a delete function, so currently it is growing day by day.
+  * automatically logs infomration on when and how the program was run. Does not contain a delete function, so currently it is growing at a rate of 300kb/year.
