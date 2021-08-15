@@ -51,3 +51,10 @@ The scraping process creates the following outputs:
   * JOSN, holding Information on content type tags. It is used to create visualizations on an external webpage.
 4. **log_file.txt**
   * automatically logs infomration on when and how the program was run. Does not contain a delete function, so currently it is growing at a rate of 300kb/year.
+
+## Commiting to GitHub
+In order to commit to GitHub, the local repository must be properly set up. this includes the creation of a SSH key, since authentication via username/password is not supported any longer via the command line. If properly set up, running the bash file will first finish all the processing and saving, followed by commiting the local changes to the repository. 
+
+## Cronjob
+The run_scraper_comit_log.sh file should be ran periodically (nightly or weekly). This should be accomplished via a cronjob, with the following settings (for nightly):  
+0 3 * * * /absloutePathtoBash /abolutePathTorepo/run_scraper_commit_log.sh
