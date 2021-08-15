@@ -24,5 +24,5 @@ The following information is extracted per course:
 * relation/s
 * language/s
     
-  
+## Documentation  
 The Documentation can be found in the according folder.
