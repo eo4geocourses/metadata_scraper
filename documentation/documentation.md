@@ -30,7 +30,7 @@ The metadata is extracted from the DublinCore-Type annotations within the HTML c
 
 ## Structure  
 
-![Structure Image](https://raw.githubusercontent.com/eo4geocourses/metadata_scraper/master/documentation/scraper_schema.png)
+![Structure Image](/documentation/scraper_schema.png?raw=True "Schema")
 
 The process of scraping the metadata consits of 4 files:
 1. **run_scraper_commit_log.sh**
