@@ -63,3 +63,9 @@ The run_scraper_comit_log.sh file should be ran periodically (nightly or weekly)
 1. Add link to hosted (GitHub Pages) presentation to repo_links.txt
 2. Upload representative picture in .png file format at via SFTP at the server in the folder 'banner'. File name must be identical to repository name of course.
 3. Check the next day if the scraper worked, alternatively manually run the scaper by running the shell file with bash.
+
+## How to set up the scraper
+1. Pull this rreository onto the server
+2. Authenticate on GitHub via SSH key
+3. Edit bash script to change file paths to the correct python file locations (No need to change paths internally in the scripts since they are all relative)
+4. Set up cronjob as instructed in "Commiting to GitHub"
