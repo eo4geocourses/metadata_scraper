@@ -25,4 +25,4 @@ The following information is extracted per course:
 * language/s
     
 ## Documentation  
-The Documentation can be found in the according folder.
+The Documentation can be found in the according folder. The documentation includes instructions on how to add new courses. In case of questions, contact simon@donike.net.
