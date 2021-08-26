@@ -19,11 +19,11 @@ echo "Python programs completed -- writing .csv, .html and .json" >> /home/admin
 echo "commiting to GitHub and writing to log file";
 echo "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ " >> /home/admineo4geo/metadata_scraper/log_file.txt;
 git status >> /home/admineo4geo/metadata_scraper/log_file.txt;
-sleep 2;
-git add * >> /home/admineo4geo/metadata_scraper/log_file.txt;
-sleep 2;
-git commit -m "automatic shell commit" >> /home/admineo4geo/metadata_scraper/log_file.txt;
-sleep 2;
-git push origin master >> /home/admineo4geo/metadata_scraper/log_file.txt;
-sleep 2;
 echo "script finished" >> /home/admineo4geo/metadata_scraper/log_file.txt;
+sleep 2;
+git add *;
+sleep 2;
+git commit -m "automatic shell commit";
+sleep 2;
+git push origin master;
+sleep 2;
